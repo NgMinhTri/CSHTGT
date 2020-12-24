@@ -12,6 +12,7 @@ namespace CSHTGT.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IDCanBo { get; set; }
+        public int MaDonVi { get; set; }
 
         [MaxLength(250)]
         public string HoTen { get; set; }
@@ -35,10 +36,11 @@ namespace CSHTGT.Data.Models
         [MaxLength(250)]
         public string Password { get; set; }
 
+        [ForeignKey("MaDonVi")]
         public virtual DonVi DonVi { get; set; }
         public List<BienBanViPham> BienBanViPhams { get; set; }
-        public List<HoSoDangKyXe> HoSoDangKyXes { get; set; }
-        public List<HoSoThuHoiXe> HoSoThuHoiXes { get; set; }
-        public List<HoSoSangTenXe> HoSoSangTenXes { get; set; }
+        public List<HoSoDangKyPhuongTien> HoSoDangKyXes { get; set; }
+        public List<HoSoThuHoiPhuongTien> HoSoThuHoiXes { get; set; }
+        public List<HoSoSangTenPhuongTien> HoSoSangTenXes { get; set; }
     }
 }

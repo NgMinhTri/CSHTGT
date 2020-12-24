@@ -11,10 +11,15 @@ namespace CSHTGT.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaPhieu { get; set; }
-        public DateTime NgayDangKy { get; set; }
+        public int MaDonVi { get; set; }
+        public int MaNgTGGiaoThong { get; set; }
+        public DateTime NgayDangKy { get; set; }     
 
-        public List<File> Files { get; set; }
+        [ForeignKey("MaNgTGGiaoThong")]
+        public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong  { get; set; }     
 
+        [ForeignKey("MaDonVi")]
         public virtual DonVi DonVi { get; set; }
+        public List<File> Files { get; set; }
     }
 }

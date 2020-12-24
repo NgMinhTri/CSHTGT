@@ -11,6 +11,7 @@ namespace CSHTGT.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        public int MaDoanhNghiepVanTai { get; set; }
 
         [MaxLength(250)]
         public string HoTen { get; set; }
@@ -41,6 +42,7 @@ namespace CSHTGT.Data.Models
         public List<GPLX> GPLXes { get; set; }
         public List<BienBanViPham> BienBanViPhams { get; set; }
 
+        [ForeignKey("MaDoanhNghiepVanTai")]
         public virtual DoanhNghiepVanTai DoanhNghiepVanTai { get; set; }
     }
 }

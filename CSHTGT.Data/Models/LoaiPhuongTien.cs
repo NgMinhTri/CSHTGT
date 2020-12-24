@@ -12,7 +12,6 @@ namespace CSHTGT.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-
        
         [MaxLength(250)]
         public string TenLoai { get; set; }

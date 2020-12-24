@@ -10,6 +10,8 @@ namespace CSHTGT.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        public int MaNgTGGiaoThong { get; set; }
+        public int MaDonVi { get; set; }
 
         [MaxLength(250)]
         public string Hang { get; set; }
@@ -22,7 +24,10 @@ namespace CSHTGT.Data.Models
         [MaxLength(250)]
         public string TrangThai { get; set; }
 
+        [ForeignKey("MaDonVi")]
         public virtual DonVi DonVi { get; set; }
+
+        [ForeignKey("MaNgTGGiaoThong")]
         public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; }
 
     }
