@@ -463,9 +463,6 @@ namespace CSHTGT.Data.Migrations
                     b.Property<int>("MaLoaiPT")
                         .HasColumnType("int");
 
-                    b.Property<int>("MaNgTGGiaoThong")
-                        .HasColumnType("int");
-
                     b.Property<string>("NhanHieu")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -498,8 +495,6 @@ namespace CSHTGT.Data.Migrations
                     b.HasIndex("MaDonVi");
 
                     b.HasIndex("MaLoaiPT");
-
-                    b.HasIndex("MaNgTGGiaoThong");
 
                     b.ToTable("PhuongTien");
                 });
@@ -681,17 +676,9 @@ namespace CSHTGT.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CSHTGT.Data.Models.NguoiThamGiaGiaoThong", "NguoiThamGiaGiaoThong")
-                        .WithMany("PhuongTiens")
-                        .HasForeignKey("MaNgTGGiaoThong")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("DonVi");
 
                     b.Navigation("LoaiPhuongTien");
-
-                    b.Navigation("NguoiThamGiaGiaoThong");
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.CanBo", b =>
@@ -736,8 +723,6 @@ namespace CSHTGT.Data.Migrations
                     b.Navigation("BienBanViPhams");
 
                     b.Navigation("GPLXes");
-
-                    b.Navigation("PhuongTiens");
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.PhieuDangKyThuTuc", b =>

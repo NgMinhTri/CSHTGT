@@ -38,7 +38,7 @@ namespace CSHTGT.Data.Models
         [MaxLength(250)]
         public string UserName { get; set; }
 
-        public List<PhuongTien> PhuongTiens { get; set; }
+       // public List<PhuongTien> PhuongTiens { get; set; }
         public List<GPLX> GPLXes { get; set; }
         public List<BienBanViPham> BienBanViPhams { get; set; }
 
