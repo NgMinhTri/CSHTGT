@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSHTGT.Data.Migrations
 {
     [DbContext(typeof(CSHTGTDbContext))]
-    [Migration("20201224155110_createdb")]
-    partial class createdb
+    [Migration("20201227112159_CreateDb")]
+    partial class CreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
