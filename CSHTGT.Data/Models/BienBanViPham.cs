@@ -15,7 +15,7 @@ namespace CSHTGT.Data.Models
         public int MaNgTGGiaoThong { get; set; }
         public int MaHinhThucXuPhat { get; set; }
         public int MaCanBo { get; set; }
-        public int MaPhuongTien { get; set; }
+      
         public DateTime NgayViPham { get; set; }
         public DateTime NgayLap { get; set; }
         public DateTime HanNopPhat { get; set; }
@@ -38,7 +38,6 @@ namespace CSHTGT.Data.Models
         [ForeignKey("MaCanBo")]
         public virtual CanBo CanBo { get; set; }
 
-        [ForeignKey("MaPhuongTien")]
-        public virtual PhuongTien PhuongTien { get; set; }
+       
     }
 }
