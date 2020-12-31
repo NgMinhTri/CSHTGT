@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CSHTGT.Data\CSHTGT.Data.csproj" />
-    <ProjectReference Include="..\CSHTGT.Service\CSHTGT.Service.csproj" />
     <ProjectReference Include="..\CSHTGT.ViewModels\CSHTGT.ViewModels.csproj" />
   </ItemGroup>
 
