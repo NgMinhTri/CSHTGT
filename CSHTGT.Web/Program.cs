@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSHTGT.Web
+namespace CSHTGT.WebAPI
 {
     public class Program
     {
