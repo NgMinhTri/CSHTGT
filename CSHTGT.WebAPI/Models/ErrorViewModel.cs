@@ -1,6 +1,6 @@
 using System;
 
-namespace CSHTGT.WepApp.Models
+namespace CSHTGT.WebAPI.Models
 {
     public class ErrorViewModel
     {

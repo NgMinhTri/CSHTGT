@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace CSHTGT.Service.Service
 {
     public class LoaiPhuongTienService : ILoaiPhuongTienService
@@ -22,10 +23,11 @@ namespace CSHTGT.Service.Service
             var query = from p in _context.LoaiPhuongTiens select new { p };
             var data = await query.Select(x => new LoaiPhuongTienViewModel()
             {
-               MoTa = x.p.MoTa,
-               TenLoai = x.p.TenLoai
-            }).ToListAsync();       
+                MoTa = x.p.MoTa,
+                TenLoai = x.p.TenLoai
+            }).ToListAsync();
             return data;
         }
+        
     }
 }

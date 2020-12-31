@@ -5,9 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CSHTGT.Data\CSHTGT.Data.csproj" />
-    <ProjectReference Include="..\CSHTGT.Service\CSHTGT.Service.csproj" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CSHTGT.ViewModels\CSHTGT.ViewModels.csproj" />
+    <ProjectReference Include="..\CSHTGT.WebAPI\CSHTGT.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

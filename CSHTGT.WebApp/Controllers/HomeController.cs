@@ -1,4 +1,4 @@
-﻿using CSHTGT.WepApp.Models;
+﻿using CSHTGT.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSHTGT.WepApp.Controllers
+namespace CSHTGT.WebApp.Controllers
 {
     public class HomeController : Controller
     {

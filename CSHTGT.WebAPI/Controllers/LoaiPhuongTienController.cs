@@ -1,7 +1,9 @@
-﻿using CSHTGT.Data.Context;
-using CSHTGT.Service.IService;
-using CSHTGT.ViewModels;
+﻿using CSHTGT.Service.IService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CSHTGT.WebAPI.Controllers
@@ -17,12 +19,11 @@ namespace CSHTGT.WebAPI.Controllers
             _loaiPhuongTienService = loaiPhuongTienService;
         }
 
-        //localhost:port/api/LoaiPhuongTien
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllLoaiPhuongTien()
         {
-            var loaiphuongtien = await _loaiPhuongTienService.GetAll();
-            return Ok(loaiphuongtien);
+            var loaiPhuongTien = await _loaiPhuongTienService.GetAll();
+            return Ok(loaiPhuongTien);
         }
     }
 }
