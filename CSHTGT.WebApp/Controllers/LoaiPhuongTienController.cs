@@ -4,44 +4,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace CSHTGT.WebApp.Controllers
 {
     public class LoaiPhuongTienController : Controller
-    {
-        
-            public IActionResult GetAll()
+    {                 
+        public ActionResult Index()
+        {
+            IEnumerable<LoaiPhuongTienViewModel> loaiphuongtien = null;
+
+            using (var client = new HttpClient())
             {
-                //return View();
-                IEnumerable<LoaiPhuongTienViewModel> phuongtien = null;
+                client.BaseAddress = new Uri("https://localhost:5001/api/");
+                //HTTP GET
+                var responseTask = client.GetAsync("loaiphuongtien");
+                responseTask.Wait();
 
-                using (var client = new HttpClient())
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    client.BaseAddress = new Uri("http://localhost:5001/api/");
-                    //HTTP GET
-                    var responseTask = client.GetAsync("LoaiPhuongTien");
-                    responseTask.Wait();
+                    var readTask = result.Content.ReadAsAsync<IList<LoaiPhuongTienViewModel>>();
+                    readTask.Wait();
 
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = result.Content.ReadAsAsync<IList<LoaiPhuongTienViewModel>>();
-                        readTask.Wait();
-
-                        phuongtien = readTask.Result;
-                    }
-                    else //web api sent error response 
-                    {
-                        //log response status here..
-
-                        phuongtien = Enumerable.Empty<LoaiPhuongTienViewModel>();
-
-                        ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                    }
+                    loaiphuongtien = readTask.Result;
                 }
-                return View(phuongtien);
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    loaiphuongtien = Enumerable.Empty<LoaiPhuongTienViewModel>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
             }
-        
+            return View(loaiphuongtien);
+        }        
     }
 }
