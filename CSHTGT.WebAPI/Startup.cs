@@ -3,16 +3,11 @@ using CSHTGT.Service.IService;
 using CSHTGT.Service.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CSHTGT.WebAPI
 {
@@ -33,6 +28,7 @@ namespace CSHTGT.WebAPI
 
             //declare DI
             services.AddTransient<ILoaiPhuongTienService, LoaiPhuongTienService>();
+            services.AddTransient<IPhuongTienService, PhuongTienService>();
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {

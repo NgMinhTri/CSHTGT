@@ -25,5 +25,6 @@ namespace CSHTGT.WebAPI.Controllers
             var loaiPhuongTien = await _loaiPhuongTienService.GetAll();
             return Ok(loaiPhuongTien);
         }
+
     }
 }

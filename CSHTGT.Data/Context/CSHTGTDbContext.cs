@@ -1,4 +1,5 @@
-﻿using CSHTGT.Data.Models;
+﻿using CSHTGT.Data.Extension;
+using CSHTGT.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSHTGT.Data.Context
@@ -7,11 +8,11 @@ namespace CSHTGT.Data.Context
     {
         public CSHTGTDbContext(DbContextOptions options) : base(options)
         {
-
+            
         }
         public DbSet<BienBanViPham> BienBanViPhams { get; set; }
         public DbSet<CanBo> CanBos { get; set; }
-        public DbSet<DoanhNghiepVanTai> DoanhNghiepVanTais { get; set; }
+        //public DbSet<DoanhNghiepVanTai> DoanhNghiepVanTais { get; set; }
         public DbSet<DonVi> DonVis { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<GPLX> GPLXes { get; set; }
@@ -23,6 +24,10 @@ namespace CSHTGT.Data.Context
         public DbSet<NguoiThamGiaGiaoThong> NguoiThamGiaGiaoThongs { get; set; }
         public DbSet<PhieuDangKyThuTuc> PhieuDangKyThuTucs { get; set; }
         public DbSet<PhuongTien> PhuongTiens { get; set; }
-    }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
 
+    }
 }
