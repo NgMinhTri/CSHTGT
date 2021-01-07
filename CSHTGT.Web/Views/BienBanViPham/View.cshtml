@@ -1,0 +1,95 @@
+﻿@model Test.Models.BBVPViewModel
+
+@{
+    ViewData["Title"] = "BBVP " + Model.MaBienBan;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    dt, dd {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .back {
+        text-decoration: none;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h2>Bien Ban Vi Pham</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HanNopPhat)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HanNopPhat)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaNgTGGiaoThong)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaNgTGGiaoThong)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaHinhThucXuPhat)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaHinhThucXuPhat)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaCanBo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaCanBo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LoiViPham)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LoiViPham)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayLap)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NgayLap)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayViPham)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NgayViPham)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SoQuyetDinh)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SoQuyetDinh)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SoTienPhat)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SoTienPhat)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TinhTrangNopPhat)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TinhTrangNopPhat)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+<div>
+    <a class="back" asp-action="Index"><i class="fa fa-angle-double-left"></i>Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

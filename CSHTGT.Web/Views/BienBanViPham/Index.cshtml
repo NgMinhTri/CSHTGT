@@ -1,0 +1,85 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "List of BBVP";
+}
+
+<style>
+    .add {
+        padding: 5px 10px;
+        color: black;
+        font-weight: bold;
+    }
+
+        .add a {
+            color: black;
+        }
+
+        .add:hover {
+            text-decoration: none;
+            color: #0073e6;
+        }
+
+    .view, .delete {
+        padding: 5px 10px;
+    }
+
+        .view:hover {
+            background-color: #0073e6;
+            text-decoration: none;
+            color: white;
+        }
+
+        .delete:hover {
+            background-color: #ff0000;
+            text-decoration: none;
+            color: white;
+        }
+</style>
+
+<h2>Danh sach Bien ban vi pham</h2>
+
+<a class="add" asp-action="AddOrEdit">+ Create</a>
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Ma bien ban
+            </th>
+            <th>
+                Loi Vi Pham
+            </th>
+            <th>
+                Ngay Lap
+            </th>
+            <th>
+                Tinh Trang Nop Phat
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Model.Rows[i]["MaBienBan"]
+                </td>
+                <td>
+                    @Model.Rows[i]["LoiViPham"]
+                </td>
+                <td>
+                    @Model.Rows[i]["NgayLap"]
+                </td>
+                <td>
+                    @Model.Rows[i]["TinhTrangNopPhat"]
+                </td>
+                <td>
+                    <a class="view" asp-action="View" asp-route-id="@Model.Rows[i]["MaBienBan"]">View</a> |
+                    <a class="edit" asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["MaBienBan"]">Edit</a> |
+                    <a class="delete" asp-action="Delete" asp-route-id="@Model.Rows[i]["MaBienBan"]">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
