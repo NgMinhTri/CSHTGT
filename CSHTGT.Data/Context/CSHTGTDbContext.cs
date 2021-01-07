@@ -16,9 +16,9 @@ namespace CSHTGT.Data.Context
         public DbSet<File> Files { get; set; }
         public DbSet<GPLX> GPLXes { get; set; }
         public DbSet<HinhThucXuPhat> HinhThucXuPhats { get; set; }
-        public DbSet<HoSoDangKyPhuongTien> HoSoDangKyPhuongTiens { get; set; }
-        public DbSet<HoSoSangTenPhuongTien> HoSoSangTenPhuongTiens { get; set; }
-        public DbSet<HoSoThuHoiPhuongTien> HoSoThuHoiPhuongTiens { get; set; }
+        //public DbSet<HoSoDangKyPhuongTien> HoSoDangKyPhuongTiens { get; set; }
+        //public DbSet<HoSoSangTenPhuongTien> HoSoSangTenPhuongTiens { get; set; }
+        //public DbSet<HoSoThuHoiPhuongTien> HoSoThuHoiPhuongTiens { get; set; }
         public DbSet<LoaiPhuongTien> LoaiPhuongTiens { get; set; }
         public DbSet<NguoiThamGiaGiaoThong> NguoiThamGiaGiaoThongs { get; set; }
         public DbSet<PhieuDangKyThuTuc> PhieuDangKyThuTucs { get; set; }

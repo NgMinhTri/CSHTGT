@@ -14,13 +14,10 @@ namespace CSHTGT.Data.Models
         public int MaHinhThucXuPhat { get; set; }
         [Required]
         public int MaCanBo { get; set; }
-<<<<<<< Updated upstream:CSHTGT.Data/Models/BienBanViPham.cs
         public int MaPhuongTien { get; set; }
         public DateTime NgayViPham { get; set; }
         public DateTime NgayLap { get; set; }
-=======
         [Required]
->>>>>>> Stashed changes:CSHTGT.Data/Models/BBVPViewModel.cs
         public DateTime HanNopPhat { get; set; }
         [Required]
         public string LoiViPham { get; set; }
@@ -35,7 +32,6 @@ namespace CSHTGT.Data.Models
         public int SoTienPhat { get; set; }
         [Required]
         public string TinhTrangNopPhat { get; set; }
-<<<<<<< Updated upstream:CSHTGT.Data/Models/BienBanViPham.cs
 
         [ForeignKey("MaNgTGGiaoThong")]
         public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; }
@@ -48,7 +44,5 @@ namespace CSHTGT.Data.Models
 
         [ForeignKey("MaPhuongTien")]
         public virtual PhuongTien PhuongTien { get; set; }
-=======
->>>>>>> Stashed changes:CSHTGT.Data/Models/BBVPViewModel.cs
     }
 }

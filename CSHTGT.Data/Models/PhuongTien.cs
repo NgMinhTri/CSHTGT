@@ -11,8 +11,9 @@ namespace CSHTGT.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaPT { get; set; }
         public int MaLoaiPT { get; set; }
-        //public int MaNgTGGiaoThong { get; set; }
-        public int MaDonVi { get; set; }
+        public int MaNgTGGiaoThong { get; set; }
+       // public int MaDonVi { get; set; }
+        public int MaCanBo { get; set; }
 
         [MaxLength(250)]
         public string TenPT { get; set; }       
@@ -42,18 +43,17 @@ namespace CSHTGT.Data.Models
         [ForeignKey("MaLoaiPT")]
         public virtual LoaiPhuongTien LoaiPhuongTien { get; set; }
 
-        //[ForeignKey("MaNgTGGiaoThong")]
-        //public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; } 
+        [ForeignKey("MaNgTGGiaoThong")]
+        public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; }
 
-        [ForeignKey("MaDonVi")]
-        public virtual DonVi DonVi { get; set; }
-        
-        public virtual HoSoDangKyPhuongTien HoSoDangKyPhuongTien { get; set; }
+        //[ForeignKey("MaDonVi")]
+        //public virtual DonVi DonVi { get; set; }
 
-        public virtual HoSoThuHoiPhuongTien HoSoThuHoiPhuongTien { get; set; }
+        [ForeignKey("MaCanBo")]
+        public virtual CanBo CanBo { get; set; }
 
-        public virtual HoSoSangTenPhuongTien HoSoSangTenPhuongTien { get; set; }
 
-        public List<BienBanViPham> BienBanViPhams { get; set; }
+
+
     }
 }
