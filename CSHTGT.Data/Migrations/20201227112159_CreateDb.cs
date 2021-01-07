@@ -71,7 +71,7 @@ namespace CSHTGT.Data.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MaDoanhNghiepVanTai = table.Column<int>(type: "int", nullable: false),
+                    MaDoanhNghiepVanTai = table.Column<int>(type: "int", nullable: true),
                     HoTen = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     DiaChi = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CMND = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
@@ -257,7 +257,7 @@ namespace CSHTGT.Data.Migrations
                         column: x => x.MaPhuongTien,
                         principalTable: "PhuongTien",
                         principalColumn: "MaPT",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -285,7 +285,7 @@ namespace CSHTGT.Data.Migrations
                         column: x => x.MaPhuongTien,
                         principalTable: "PhuongTien",
                         principalColumn: "MaPT",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -313,7 +313,7 @@ namespace CSHTGT.Data.Migrations
                         column: x => x.MaPhuongTien,
                         principalTable: "PhuongTien",
                         principalColumn: "MaPT",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -341,7 +341,7 @@ namespace CSHTGT.Data.Migrations
                         column: x => x.MaPhuongTien,
                         principalTable: "PhuongTien",
                         principalColumn: "MaPT",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

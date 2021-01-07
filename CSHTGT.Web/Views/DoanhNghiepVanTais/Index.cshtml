@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CSHTGT.Data.Models.DoanhNghiepVanTai>
+
+@{
+    ViewData["Title"] = "Danh sách Doanh Nghiệp Vận Tải";
+}
+
+<h1>Danh sách Doanh Nghiệp Vận Tải</h1>
+
+<p>
+    <a asp-action="Create">Thêm Mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên Doanh Nghiệp
+                @*@Html.DisplayNameFor(model => model.TenDN)*@
+            </th>
+            <th>
+                Địa chỉ
+                @*@Html.DisplayNameFor(model => model.DiaChi)*@
+            </th>
+            <th>
+                Tình trạng
+                @*@Html.DisplayNameFor(model => model.TinhTrang)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TinhTrang)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Chỉnh sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

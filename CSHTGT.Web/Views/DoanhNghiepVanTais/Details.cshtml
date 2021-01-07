@@ -1,0 +1,39 @@
+﻿@model CSHTGT.Data.Models.DoanhNghiepVanTai
+
+@{
+    ViewData["Title"] = "Chi tiết";
+}
+
+<h1>Chi tiết</h1>
+
+<div>
+    <h4>Chi tiết doanh nghiệp vận chuyển</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên Doanh Nghiệp
+            @*@Html.DisplayNameFor(model => model.TenDN)*@
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TenDN)
+        </dd>
+        <dt class="col-sm-2">
+            Địa Chỉ
+            @*@Html.DisplayNameFor(model => model.DiaChi)*@
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        <dt class="col-sm-2">
+            Tình Trạng
+            @*@Html.DisplayNameFor(model => model.TinhTrang)*@
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Chỉnh sửa</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

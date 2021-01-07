@@ -23,6 +23,11 @@ namespace CSHTGT.Data.Context
         public DbSet<NguoiThamGiaGiaoThong> NguoiThamGiaGiaoThongs { get; set; }
         public DbSet<PhieuDangKyThuTuc> PhieuDangKyThuTucs { get; set; }
         public DbSet<PhuongTien> PhuongTiens { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                @"Server=.;Database=CSHTGT;Trusted_Connection=True;");
+        }
     }
 
 }
