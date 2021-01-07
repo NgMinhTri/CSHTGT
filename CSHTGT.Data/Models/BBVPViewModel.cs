@@ -1,32 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CSHTGT.Data.Models
 {
-    [Table("BienBanViPham")]
-    public class BienBanViPham
+    public class BBVPViewModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaBienBan { get; set; }
+        [Required]
         public int MaNgTGGiaoThong { get; set; }
+        [Required]
         public int MaHinhThucXuPhat { get; set; }
+        [Required]
         public int MaCanBo { get; set; }
         public int MaPhuongTien { get; set; }
         public DateTime NgayViPham { get; set; }
         public DateTime NgayLap { get; set; }
+        [Required]
         public DateTime HanNopPhat { get; set; }
-
-        [MaxLength(250)]
+        [Required]
         public string LoiViPham { get; set; }
-        [MaxLength(250)]
+        [Required]
+        public DateTime NgayLap { get; set; }
+        [Required]
+        public DateTime NgayViPham { get; set; }
+        [Required]
         public string SoQuyetDinh { get; set; }
+        [Required]
+        [Range(10000, int.MaxValue, ErrorMessage = "So tien phat >= 10000")]
         public int SoTienPhat { get; set; }
-
-        [MaxLength(250)]
+        [Required]
         public string TinhTrangNopPhat { get; set; }
 
         [ForeignKey("MaNgTGGiaoThong")]

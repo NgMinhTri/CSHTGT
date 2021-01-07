@@ -39,8 +39,9 @@ namespace CSHTGT.Data.Models
         [ForeignKey("MaDonVi")]
         public virtual DonVi DonVi { get; set; }
         public List<BienBanViPham> BienBanViPhams { get; set; }
-        public List<HoSoDangKyPhuongTien> HoSoDangKyXes { get; set; }
-        public List<HoSoThuHoiPhuongTien> HoSoThuHoiXes { get; set; }
-        public List<HoSoSangTenPhuongTien> HoSoSangTenXes { get; set; }
+        public List<PhuongTien> PhuongTiens { get; set; }
+        //public List<HoSoDangKyPhuongTien> HoSoDangKyXes { get; set; }
+        //public List<HoSoThuHoiPhuongTien> HoSoThuHoiXes { get; set; }
+        //public List<HoSoSangTenPhuongTien> HoSoSangTenXes { get; set; }
     }
 }
