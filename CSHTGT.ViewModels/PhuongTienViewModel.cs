@@ -23,6 +23,6 @@ namespace CSHTGT.ViewModels
         public string UserName { get; set; }
         //khóa ngoại
         public int MaLoaiPhuongTien { get; set; }
-        public int MaCanBo { get; set; }
+        
     }
 }

@@ -1,9 +1,6 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +10,9 @@ namespace CSHTGT.WebApp.Controllers
     public class PhuongTienController : Controller
     {
         public IActionResult Index()
-        {
-            
-
+        {            
             return View();
-        }
-
-       
-
+        }      
         public ViewResult Create() => View();
         [HttpPost]
         public async Task<IActionResult> Create(PhuongTienViewModel phuongTienViewModel)

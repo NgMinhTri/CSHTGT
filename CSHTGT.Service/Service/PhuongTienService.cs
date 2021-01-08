@@ -40,7 +40,7 @@ namespace CSHTGT.Service.Service
                         SoKhung = model.SoKhung,
                         SoMay = model.SoMay,
                         MaLoaiPT = model.MaLoaiPhuongTien,
-                        MaCanBo = model.MaCanBo                      
+                                          
                     }
                 }
             };
