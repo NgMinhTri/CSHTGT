@@ -14,4 +14,19 @@
     <ProjectReference Include="..\CSHTGT.WebAPI\CSHTGT.WebAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\BienBanViPham\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BienBanViPham\AddOrEdit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BienBanViPham\Delete.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BienBanViPham\View.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

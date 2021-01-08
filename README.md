@@ -5,4 +5,4 @@ HTMT/CSS, Javascript
 # Link github
 https://github.com/NgMinhTri/CSHTGT
 # How to configure 
-# How to contribute
+# How to contributedsdsdsds
