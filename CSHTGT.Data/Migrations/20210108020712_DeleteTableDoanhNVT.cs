@@ -3,25 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSHTGT.Data.Migrations
 {
-    public partial class XoaRangBuoc : Migration
+    public partial class DeleteTableDoanhNVT : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "DoanhNghiepVanTai",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenDN = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    DiaChi = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    TinhTrang = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DoanhNghiepVanTai", x => x.ID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "DonVi",
                 columns: table => new
@@ -71,7 +56,6 @@ namespace CSHTGT.Data.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MaDoanhNghiepVanTai = table.Column<int>(type: "int", nullable: false),
                     HoTen = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     DiaChi = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CMND = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
@@ -85,12 +69,6 @@ namespace CSHTGT.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NguoiThamGiaGiaoThong", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_NguoiThamGiaGiaoThong_DoanhNghiepVanTai_MaDoanhNghiepVanTai",
-                        column: x => x.MaDoanhNghiepVanTai,
-                        principalTable: "DoanhNghiepVanTai",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,6 +157,41 @@ namespace CSHTGT.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PhuongTien",
+                columns: table => new
+                {
+                    MaPT = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaLoaiPT = table.Column<int>(type: "int", nullable: false),
+                    MaNgTGGiaoThong = table.Column<int>(type: "int", nullable: false),
+                    TenPT = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    BienSo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    NhanHieu = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    SoChoNgoi = table.Column<int>(type: "int", nullable: false),
+                    SoKhung = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    SoMay = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    TaiTrong = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    TrangThai = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    LoaiDangKy = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PhuongTien", x => x.MaPT);
+                    table.ForeignKey(
+                        name: "FK_PhuongTien_LoaiPhuongTien_MaLoaiPT",
+                        column: x => x.MaLoaiPT,
+                        principalTable: "LoaiPhuongTien",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PhuongTien_NguoiThamGiaGiaoThong_MaNgTGGiaoThong",
+                        column: x => x.MaNgTGGiaoThong,
+                        principalTable: "NguoiThamGiaGiaoThong",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BienBanViPham",
                 columns: table => new
                 {
@@ -219,48 +232,6 @@ namespace CSHTGT.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PhuongTien",
-                columns: table => new
-                {
-                    MaPT = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MaLoaiPT = table.Column<int>(type: "int", nullable: false),
-                    MaNgTGGiaoThong = table.Column<int>(type: "int", nullable: false),
-                    MaCanBo = table.Column<int>(type: "int", nullable: false),
-                    TenPT = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    BienSo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    NhanHieu = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    SoChoNgoi = table.Column<int>(type: "int", nullable: false),
-                    SoKhung = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    SoMay = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    TaiTrong = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    TrangThai = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    LoaiDangKy = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PhuongTien", x => x.MaPT);
-                    table.ForeignKey(
-                        name: "FK_PhuongTien_CanBo_MaCanBo",
-                        column: x => x.MaCanBo,
-                        principalTable: "CanBo",
-                        principalColumn: "IDCanBo",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PhuongTien_LoaiPhuongTien_MaLoaiPT",
-                        column: x => x.MaLoaiPT,
-                        principalTable: "LoaiPhuongTien",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PhuongTien_NguoiThamGiaGiaoThong_MaNgTGGiaoThong",
-                        column: x => x.MaNgTGGiaoThong,
-                        principalTable: "NguoiThamGiaGiaoThong",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "File",
                 columns: table => new
                 {
@@ -279,6 +250,18 @@ namespace CSHTGT.Data.Migrations
                         principalTable: "PhieuDangKyThuTuc",
                         principalColumn: "MaPhieu",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "LoaiPhuongTien",
+                columns: new[] { "ID", "MoTa", "TenLoai" },
+                values: new object[,]
+                {
+                    { 1, "Phương tiện giao thông cơ giới đường bộ bao gồm xe ô tô; máy kéo; rơ moóc hoặc sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo; xe máy (2 bánh, 3 bánh); xe đạp điện và các loại xe tương tự khác", "Xe cơ giới" },
+                    { 2, "Phương tiện giao thông thô sơ đường bộ bao gồm xe đạp, xe xích lô, xe lăn, xe kéo và các loại xe tương tự khác.", "Xe thô sơ" },
+                    { 3, "Tàu Container là phương tiện vận tải biển có cấu trúc đặc biệt, để chứa một lượng lớn hàng hóa được xếp trong các loại Container khác nhau.", "Tàu Container" },
+                    { 4, "là một chiếc tàu thủy (hoạt động trên sông hoặc ven biển) chuyên chở hành khách cùng phương tiện của họ trên những tuyến đường và lịch trình cố định.", "Phà" },
+                    { 5, "là một thuyền có đáy bằng, một phương tiện dùng để chở các hàng hóa nặng di chuyển chủ yếu ở các con kênh hoặc các con sông.", "Sà lan" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -317,11 +300,6 @@ namespace CSHTGT.Data.Migrations
                 column: "MaNgTGGiaoThong");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NguoiThamGiaGiaoThong_MaDoanhNghiepVanTai",
-                table: "NguoiThamGiaGiaoThong",
-                column: "MaDoanhNghiepVanTai");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PhieuDangKyThuTuc_MaDonVi",
                 table: "PhieuDangKyThuTuc",
                 column: "MaDonVi");
@@ -330,11 +308,6 @@ namespace CSHTGT.Data.Migrations
                 name: "IX_PhieuDangKyThuTuc_MaNgTGGiaoThong",
                 table: "PhieuDangKyThuTuc",
                 column: "MaNgTGGiaoThong");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhuongTien_MaCanBo",
-                table: "PhuongTien",
-                column: "MaCanBo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PhuongTien_MaLoaiPT",
@@ -362,25 +335,22 @@ namespace CSHTGT.Data.Migrations
                 name: "PhuongTien");
 
             migrationBuilder.DropTable(
+                name: "CanBo");
+
+            migrationBuilder.DropTable(
                 name: "HinhThucXuPhat");
 
             migrationBuilder.DropTable(
                 name: "PhieuDangKyThuTuc");
 
             migrationBuilder.DropTable(
-                name: "CanBo");
-
-            migrationBuilder.DropTable(
                 name: "LoaiPhuongTien");
-
-            migrationBuilder.DropTable(
-                name: "NguoiThamGiaGiaoThong");
 
             migrationBuilder.DropTable(
                 name: "DonVi");
 
             migrationBuilder.DropTable(
-                name: "DoanhNghiepVanTai");
+                name: "NguoiThamGiaGiaoThong");
         }
     }
 }

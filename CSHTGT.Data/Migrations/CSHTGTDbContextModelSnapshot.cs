@@ -118,30 +118,6 @@ namespace CSHTGT.Data.Migrations
                     b.ToTable("CanBo");
                 });
 
-            modelBuilder.Entity("CSHTGT.Data.Models.DoanhNghiepVanTai", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("DiaChi")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("TenDN")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("TinhTrang")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("DoanhNghiepVanTai");
-                });
-
             modelBuilder.Entity("CSHTGT.Data.Models.DonVi", b =>
                 {
                     b.Property<int>("MaDonVi")
@@ -268,6 +244,38 @@ namespace CSHTGT.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("LoaiPhuongTien");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            MoTa = "Phương tiện giao thông cơ giới đường bộ bao gồm xe ô tô; máy kéo; rơ moóc hoặc sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo; xe máy (2 bánh, 3 bánh); xe đạp điện và các loại xe tương tự khác",
+                            TenLoai = "Xe cơ giới"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            MoTa = "Phương tiện giao thông thô sơ đường bộ bao gồm xe đạp, xe xích lô, xe lăn, xe kéo và các loại xe tương tự khác.",
+                            TenLoai = "Xe thô sơ"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            MoTa = "Tàu Container là phương tiện vận tải biển có cấu trúc đặc biệt, để chứa một lượng lớn hàng hóa được xếp trong các loại Container khác nhau.",
+                            TenLoai = "Tàu Container"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            MoTa = "là một chiếc tàu thủy (hoạt động trên sông hoặc ven biển) chuyên chở hành khách cùng phương tiện của họ trên những tuyến đường và lịch trình cố định.",
+                            TenLoai = "Phà"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            MoTa = "là một thuyền có đáy bằng, một phương tiện dùng để chở các hàng hóa nặng di chuyển chủ yếu ở các con kênh hoặc các con sông.",
+                            TenLoai = "Sà lan"
+                        });
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.NguoiThamGiaGiaoThong", b =>
@@ -293,9 +301,6 @@ namespace CSHTGT.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("MaDoanhNghiepVanTai")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("NgaySinh")
                         .HasColumnType("datetime2");
 
@@ -316,8 +321,6 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("MaDoanhNghiepVanTai");
 
                     b.ToTable("NguoiThamGiaGiaoThong");
                 });
@@ -362,9 +365,6 @@ namespace CSHTGT.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("MaCanBo")
-                        .HasColumnType("int");
-
                     b.Property<int>("MaLoaiPT")
                         .HasColumnType("int");
 
@@ -399,8 +399,6 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("MaPT");
-
-                    b.HasIndex("MaCanBo");
 
                     b.HasIndex("MaLoaiPT");
 
@@ -477,17 +475,6 @@ namespace CSHTGT.Data.Migrations
                     b.Navigation("NguoiThamGiaGiaoThong");
                 });
 
-            modelBuilder.Entity("CSHTGT.Data.Models.NguoiThamGiaGiaoThong", b =>
-                {
-                    b.HasOne("CSHTGT.Data.Models.DoanhNghiepVanTai", "DoanhNghiepVanTai")
-                        .WithMany("NguoiThamGiaGiaoThongs")
-                        .HasForeignKey("MaDoanhNghiepVanTai")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DoanhNghiepVanTai");
-                });
-
             modelBuilder.Entity("CSHTGT.Data.Models.PhieuDangKyThuTuc", b =>
                 {
                     b.HasOne("CSHTGT.Data.Models.DonVi", "DonVi")
@@ -509,12 +496,6 @@ namespace CSHTGT.Data.Migrations
 
             modelBuilder.Entity("CSHTGT.Data.Models.PhuongTien", b =>
                 {
-                    b.HasOne("CSHTGT.Data.Models.CanBo", "CanBo")
-                        .WithMany("PhuongTiens")
-                        .HasForeignKey("MaCanBo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CSHTGT.Data.Models.LoaiPhuongTien", "LoaiPhuongTien")
                         .WithMany("PhuongTiens")
                         .HasForeignKey("MaLoaiPT")
@@ -527,8 +508,6 @@ namespace CSHTGT.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CanBo");
-
                     b.Navigation("LoaiPhuongTien");
 
                     b.Navigation("NguoiThamGiaGiaoThong");
@@ -537,13 +516,6 @@ namespace CSHTGT.Data.Migrations
             modelBuilder.Entity("CSHTGT.Data.Models.CanBo", b =>
                 {
                     b.Navigation("BienBanViPhams");
-
-                    b.Navigation("PhuongTiens");
-                });
-
-            modelBuilder.Entity("CSHTGT.Data.Models.DoanhNghiepVanTai", b =>
-                {
-                    b.Navigation("NguoiThamGiaGiaoThongs");
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.DonVi", b =>
