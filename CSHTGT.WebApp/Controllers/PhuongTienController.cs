@@ -1,6 +1,8 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,26 +11,36 @@ namespace CSHTGT.WebApp.Controllers
 {
     public class PhuongTienController : Controller
     {
-        public IActionResult Index()
-        {            
-            return View();
-        }      
-        public ViewResult Create() => View();
-        [HttpPost]
-        public async Task<IActionResult> Create(PhuongTienViewModel phuongTienViewModel)
+        public async Task<IActionResult> Index()
         {
-            PhuongTienViewModel receivedPhuongTien = new PhuongTienViewModel();
+            List<PhuongTienViewModel> listPhuongTien = new List<PhuongTienViewModel>();
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(phuongTienViewModel), Encoding.UTF8, "application/json");
-
-                using (var response = await httpClient.PostAsync("https://localhost:5001/api/PhuongTien", content))
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/PhuongTien"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    receivedPhuongTien = JsonConvert.DeserializeObject<PhuongTienViewModel>(apiResponse);
+                    listPhuongTien = JsonConvert.DeserializeObject<List<PhuongTienViewModel>>(apiResponse);
                 }
             }
-            return View(receivedPhuongTien);
+            return View(listPhuongTien);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(PhuongTienViewModel phuongTienViewModel)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+            var postTask = client.PostAsJsonAsync<PhuongTienViewModel>("api/phuongtien", phuongTienViewModel);
+            postTask.Wait();
+            var result = postTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(phuongTienViewModel);
         }
     }
 }

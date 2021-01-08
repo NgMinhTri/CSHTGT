@@ -1,43 +1,28 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace CSHTGT.WebApp.Controllers
 {
     public class LoaiPhuongTienController : Controller
-    {                 
-        public ActionResult Index()
+    {        
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<LoaiPhuongTienViewModel> loaiphuongtien = null;
-
-            using (var client = new HttpClient())
+            List<LoaiPhuongTienViewModel> listLoaiPhuongTien = new List<LoaiPhuongTienViewModel>();
+            using (var httpClient = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:5001/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("loaiphuongtien");
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/LoaiPhuongTien"))
                 {
-                    var readTask = result.Content.ReadAsAsync<IList<LoaiPhuongTienViewModel>>();
-                    readTask.Wait();
-
-                    loaiphuongtien = readTask.Result;
-                }
-                else //web api sent error response 
-                {
-                    //log response status here..
-
-                    loaiphuongtien = Enumerable.Empty<LoaiPhuongTienViewModel>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listLoaiPhuongTien = JsonConvert.DeserializeObject<List<LoaiPhuongTienViewModel>>(apiResponse);
                 }
             }
-            return View(loaiphuongtien);
-        }        
+            return View(listLoaiPhuongTien);
+        }
     }
 }

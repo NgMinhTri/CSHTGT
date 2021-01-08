@@ -21,7 +21,7 @@ namespace CSHTGT.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]PhuongTienViewModel model)
+        public async Task<IActionResult> Create([FromBody]PhuongTienViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
