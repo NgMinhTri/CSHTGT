@@ -1,9 +1,11 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CSHTGT.WebApp.Controllers
@@ -12,37 +14,29 @@ namespace CSHTGT.WebApp.Controllers
     {
         public IActionResult Index()
         {
-            //consume Web API Get method here.. 
+            
 
             return View();
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
+       
 
+        public ViewResult Create() => View();
         [HttpPost]
-        public IActionResult Create(PhuongTienViewModel phuongtien)
+        public async Task<IActionResult> Create(PhuongTienViewModel phuongTienViewModel)
         {
-            using (var client = new HttpClient())
+            PhuongTienViewModel receivedPhuongTien = new PhuongTienViewModel();
+            using (var httpClient = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:5001/api/phuongtien");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(phuongTienViewModel), Encoding.UTF8, "application/json");
 
-                //HTTP POST
-                var postTask = client.PostAsJsonAsync<PhuongTienViewModel>("phuongtien", phuongtien);
-                postTask.Wait();
-
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                using (var response = await httpClient.PostAsync("https://localhost:5001/api/PhuongTien", content))
                 {
-                    return RedirectToAction("Index");
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    receivedPhuongTien = JsonConvert.DeserializeObject<PhuongTienViewModel>(apiResponse);
                 }
             }
-
-            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-            return View(phuongtien);
+            return View(receivedPhuongTien);
         }
     }
 }
