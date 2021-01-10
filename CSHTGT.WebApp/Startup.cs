@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using CSHTGT.Data.Context;
 
 namespace CSHTGT.WebApp
 {
@@ -19,6 +20,8 @@ namespace CSHTGT.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CSHTGTDbContext>();
+            services.AddControllers();
             services.AddControllersWithViews();
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
