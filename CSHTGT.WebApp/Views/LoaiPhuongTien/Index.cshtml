@@ -1,43 +1,41 @@
 ﻿@model IEnumerable<CSHTGT.ViewModels.LoaiPhuongTienViewModel>
 
 @{
-    ViewData["Title"] = "Thông tin loại phương tiện";
+    ViewData["Title"] = "Danh sách các loại phương tiện";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Thông tin loại phương tiện</h1>
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách các loại phương tiện tham gia lưu thông</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách các loại phương tiện</li>
+    </ol>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Tên loại
+                </th>
+                <th>
+                    Mô tả
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenLoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenLoai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenLoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+                </tr>
+            }
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

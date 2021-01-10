@@ -12,12 +12,14 @@ namespace CSHTGT.ViewModels
         public int SoChoNgoi { get; set; }
         public string SoKhung { get; set; }
         public string SoMay { get; set; }
-        public string LoaiDangKy { get; set; }
+
+        public int ID { get; set; }
         public string HoTen { get; set; }
         public string DiaChi { get; set; }
         public string CMND { get; set; }
         public string Email { get; set; }
         public DateTime NgaySinh { get; set; }
+        public string QueQuan { get; set; }
         public string SDT { get; set; }
         public string PassWord { get; set; }
         public string UserName { get; set; }

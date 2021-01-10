@@ -24,12 +24,12 @@ namespace CSHTGT.WebApp.Controllers
             }
             return View(listPhuongTien);
         }
-        public IActionResult Create()
+        public IActionResult AddPhuongTien()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(PhuongTienViewModel phuongTienViewModel)
+        public IActionResult AddPhuongTien(PhuongTienViewModel phuongTienViewModel)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:5001/");
@@ -38,9 +38,30 @@ namespace CSHTGT.WebApp.Controllers
             var result = postTask.Result;
             if (result.IsSuccessStatusCode)
             {
+                TempData["result"] = "Đăng kí phương tiện thành công";
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "Đăng kí phương tiện thất bại");
             return View(phuongTienViewModel);
+        }
+        
+        public ActionResult DeletePT(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:5001/api/");             
+                var deleteTask = client.DeleteAsync("PhuongTien/" + id);
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    TempData["result"] = "Đã xóa hồ sơ đăng kí";
+                    return RedirectToAction("Index");
+                   
+                }
+            }
+            return RedirectToAction("Index");
         }
     }
 }
