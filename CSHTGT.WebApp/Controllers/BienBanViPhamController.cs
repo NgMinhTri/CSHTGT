@@ -1,153 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Data.SqlClient;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using CSHTGT.WebApp.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSHTGT.WebApp.Controllers
 {
-    public class BienBanViPhamController : Controllers
+    public class BienBanViPhamController : Controller
     {
-        private readonly IConfiguration _configuration;
-
-        public BienBanViPhamController(IConfiguration configuration)
+        public async Task<IActionResult> Index()
         {
-            this._configuration = configuration;
-        }
-
-        // GET: BBVP
-        public IActionResult Index()
-        {
-            DataTable dtbl = new DataTable();
-            using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
+            List<BienBanViPhamViewModel> listBienBan = new List<BienBanViPhamViewModel>();
+            using (var httpClient = new HttpClient())
             {
-                sqlConnection.Open();
-                SqlDataAdapter sqlDA = new SqlDataAdapter("sp_getAllBBVP", sqlConnection);
-                sqlDA.SelectCommand.CommandType = CommandType.StoredProcedure;
-                sqlDA.Fill(dtbl);
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/bienbanvipham"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listBienBan = JsonConvert.DeserializeObject<List<BienBanViPhamViewModel>>(apiResponse);
+                }
             }
-            return View(dtbl);
+            return View(listBienBan);
         }
-
-
-
-        // GET: BBVP/View
-
-        public IActionResult View(int? id)
+        public IActionResult AddBBVP()
         {
-            BienBanViPhamViewModel bBVPViewModel = new BienBanViPhamViewModel();
-            if (id > 0)
-            {
-                bBVPViewModel = FetchBBVPByID(id);
-            }
-            return View(bBVPViewModel);
+            return View();
         }
-        public IActionResult AddOrEdit(int? id)
-        {
-            BienBanViPhamViewModel bBVPViewModel = new BienBanViPhamViewModel();
-            if (id > 0)
-            {
-                bBVPViewModel = FetchBBVPByID(id);
-            }
-            return View(bBVPViewModel);
-        }
-
-
-        // POST: BBVP/AddOrEdit
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddOrEdit(int id, [Bind("HanNopPhat,MaNgTGGiaoThong,MaHinhThucXuPhat,MaCanBo,LoiViPham,NgayLap,NgayViPham,SoQuyetDinh,SoTienPhat,TinhTrangNopPhat,HinhAnhViPham")] BienBanViPhamViewModel bBVPViewModel)
+        public IActionResult AddBBVP(BienBanViPhamViewModel bienBanViPhamViewModel)
         {
-
-
-            if (ModelState.IsValid)
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+            var postTask = client.PostAsJsonAsync<BienBanViPhamViewModel>("api/bienbanvipham", bienBanViPhamViewModel);
+            postTask.Wait();
+            var result = postTask.Result;
+            if (result.IsSuccessStatusCode)
             {
-                using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
+                TempData["result"] = "Ghi bien ban thanh cong";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Ghi bien ban that bai");
+            return View(bienBanViPhamViewModel);
+        }
+
+        public ActionResult DeleteBBVP(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:5001/api/");
+                var deleteTask = client.DeleteAsync("bienbanvipham/" + id);
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    sqlConnection.Open();
-                    SqlCommand sqlCmd = new SqlCommand("sp_AddOrEditBBVP", sqlConnection);
-                    sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.AddWithValue("MaBienBan", bBVPViewModel.MaBienBan);
-                    sqlCmd.Parameters.AddWithValue("MaNgTGGiaoThong", bBVPViewModel.MaNgTGGiaoThong);
-                    sqlCmd.Parameters.AddWithValue("MaHinhThucXuPhat", bBVPViewModel.MaHinhThucXuPhat);
-                    sqlCmd.Parameters.AddWithValue("MaCanBo", bBVPViewModel.MaCanBo);
-                    sqlCmd.Parameters.AddWithValue("HanNopPhat", bBVPViewModel.HanNopPhat);
-                    sqlCmd.Parameters.AddWithValue("LoiViPham", bBVPViewModel.LoiViPham);
-                    sqlCmd.Parameters.AddWithValue("NgayLap", bBVPViewModel.NgayLap);
-                    sqlCmd.Parameters.AddWithValue("NgayViPham", bBVPViewModel.NgayViPham);
-                    sqlCmd.Parameters.AddWithValue("SoQuyetDinh", bBVPViewModel.SoQuyetDinh);
-                    sqlCmd.Parameters.AddWithValue("SoTienPhat", bBVPViewModel.SoTienPhat);
-                    sqlCmd.Parameters.AddWithValue("TinhTrangNopPhat", bBVPViewModel.TinhTrangNopPhat);
-                    sqlCmd.ExecuteNonQuery();
+                    TempData["result"] = "Da xoa bien ban vi pham";
+                    return RedirectToAction("Index");
 
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(bBVPViewModel);
-        }
-
-        // GET: BBVP/Delete/5
-        public IActionResult Delete(int? id)
-        {
-            BienBanViPhamViewModel bBPViewModel = FetchBBVPByID(id);
-
-            return View(bBPViewModel);
-        }
-
-        // POST: BBVP/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
-            {
-                sqlConnection.Open();
-                SqlCommand sqlCmd = new SqlCommand("sp_deleteBBVP", sqlConnection);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                sqlCmd.Parameters.AddWithValue("MaBienBan", id);
-                sqlCmd.ExecuteNonQuery();
-            }
-            return RedirectToAction(nameof(Index));
-        }
-
-        [NonAction]
-        public BienBanViPhamViewModel FetchBBVPByID(int? id)
-        {
-            BienBanViPhamViewModel bBVPViewModel = new BienBanViPhamViewModel();
-
-            using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
-            {
-                DataTable dtbl = new DataTable();
-                sqlConnection.Open();
-                SqlDataAdapter sqlDA = new SqlDataAdapter("sp_selectBBVP", sqlConnection);
-                sqlDA.SelectCommand.CommandType = CommandType.StoredProcedure;
-                sqlDA.SelectCommand.Parameters.AddWithValue("MaBienBan", id);
-                sqlDA.Fill(dtbl);
-                if (dtbl.Rows.Count == 1)
-                {
-                    bBVPViewModel.MaBienBan = Convert.ToInt32(dtbl.Rows[0]["MaBienBan"].ToString());
-                    bBVPViewModel.HanNopPhat = Convert.ToDateTime(dtbl.Rows[0]["HanNopPhat"].ToString());
-                    bBVPViewModel.MaNgTGGiaoThong = Convert.ToInt32(dtbl.Rows[0]["MaNgTGGiaoThong"].ToString());
-                    bBVPViewModel.MaHinhThucXuPhat = Convert.ToInt32(dtbl.Rows[0]["MaHinhThucXuPhat"].ToString());
-                    bBVPViewModel.MaCanBo = Convert.ToInt32(dtbl.Rows[0]["MaCanBo"].ToString());
-                    bBVPViewModel.LoiViPham = dtbl.Rows[0]["LoiViPham"].ToString();
-                    bBVPViewModel.NgayLap = Convert.ToDateTime(dtbl.Rows[0]["NgayLap"].ToString());
-                    bBVPViewModel.NgayViPham = Convert.ToDateTime(dtbl.Rows[0]["NgayViPham"].ToString());
-                    bBVPViewModel.SoQuyetDinh = dtbl.Rows[0]["SoQuyetDinh"].ToString();
-                    bBVPViewModel.SoTienPhat = Convert.ToInt32(dtbl.Rows[0]["SoTienPhat"].ToString());
-                    bBVPViewModel.TinhTrangNopPhat = dtbl.Rows[0]["TinhTrangNopPhat"].ToString();
-
-                }
-                return bBVPViewModel;
-            }
+            return RedirectToAction("Index");
         }
     }
 }
