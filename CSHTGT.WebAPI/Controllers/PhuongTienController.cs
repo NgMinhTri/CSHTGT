@@ -14,19 +14,37 @@ namespace CSHTGT.WebAPI.Controllers
     public class PhuongTienController : ControllerBase
     {
         private readonly IPhuongTienService _phuongTienService;
+        private readonly ILoaiPhuongTienService _loaiphuongtienService;
 
-        public PhuongTienController(IPhuongTienService phuongTienService)
+        public PhuongTienController(IPhuongTienService phuongTienService, 
+            ILoaiPhuongTienService loaiphuongtienService)
         {
             _phuongTienService = phuongTienService;
+            _loaiphuongtienService = loaiphuongtienService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> getAllPhuongTien()
+        {
+            var phuongtien = await _phuongTienService.GetAll();
+            return Ok(phuongtien);
+        }
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]PhuongTienViewModel model)
+        public async Task<IActionResult> Create([FromBody]PhuongTienViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _phuongTienService.Create(model);
             return Ok(result);
         }
+        [HttpDelete("{ngtggiaothongid}")]
+        public async Task<IActionResult> Delete(int ngtggiaothongid)
+        {
+            var result = await _phuongTienService.Delete(ngtggiaothongid);
+            if (result == 0)
+                return BadRequest();
+            return Ok();
+        }
+       
     }
 }

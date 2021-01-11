@@ -12,14 +12,16 @@ namespace CSHTGT.Data.Models
         public int MaPT { get; set; }
         public int MaLoaiPT { get; set; }
         public int MaNgTGGiaoThong { get; set; }
-       // public int MaDonVi { get; set; }
-       // public int MaCanBo { get; set; }
 
+        [Required]
         [MaxLength(250)]
-        public string TenPT { get; set; }       
-        [MaxLength(20)]
-        public string BienSo { get; set; }          
+        public string TenPT { get; set; }
 
+        [Required]
+        [MaxLength(20)]
+        public string BienSo { get; set; }
+
+        [Required]
         [MaxLength(250)]
         public string NhanHieu { get; set; }
 
@@ -35,25 +37,13 @@ namespace CSHTGT.Data.Models
         public string TaiTrong { get; set; }
 
         [MaxLength(250)]
-        public string TrangThai { get; set; }
-
-        [MaxLength(250)]
-        public string LoaiDangKy { get; set; }
+        public string TrangThai { get; set; }        
 
         [ForeignKey("MaLoaiPT")]
         public virtual LoaiPhuongTien LoaiPhuongTien { get; set; }
 
         [ForeignKey("MaNgTGGiaoThong")]
         public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; }
-
-        //[ForeignKey("MaDonVi")]
-        //public virtual DonVi DonVi { get; set; }
-
-        //[ForeignKey("MaCanBo")]
-        //public virtual CanBo CanBo { get; set; }
-
-
-
-
+       
     }
 }
