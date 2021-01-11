@@ -13,14 +13,10 @@ namespace CSHTGT.WebAPI.Controllers
     [ApiController]
     public class PhuongTienController : ControllerBase
     {
-        private readonly IPhuongTienService _phuongTienService;
-        private readonly ILoaiPhuongTienService _loaiphuongtienService;
-
-        public PhuongTienController(IPhuongTienService phuongTienService, 
-            ILoaiPhuongTienService loaiphuongtienService)
+        private readonly IPhuongTienService _phuongTienService;      
+        public PhuongTienController(IPhuongTienService phuongTienService)
         {
-            _phuongTienService = phuongTienService;
-            _loaiphuongtienService = loaiphuongtienService;
+            _phuongTienService = phuongTienService;          
         }
 
         [HttpGet]
@@ -29,7 +25,13 @@ namespace CSHTGT.WebAPI.Controllers
             var phuongtien = await _phuongTienService.GetAll();
             return Ok(phuongtien);
         }
-        [HttpPost]
+        //[HttpGet("id")]
+        //public async Task<IActionResult> getPhuongTienById(int id)
+        //{
+        //    var phuongtien = await _phuongTienService.GetById(id);
+        //    return Ok(phuongtien);
+        //}
+        [HttpPost]       
         public async Task<IActionResult> Create([FromBody]PhuongTienViewModel model)
         {
             if (!ModelState.IsValid)
@@ -37,13 +39,21 @@ namespace CSHTGT.WebAPI.Controllers
             var result = await _phuongTienService.Create(model);
             return Ok(result);
         }
-        [HttpDelete("{ngtggiaothongid}")]
-        public async Task<IActionResult> Delete(int ngtggiaothongid)
+        [HttpDelete("phuongtienid")]
+        public async Task<IActionResult> Delete(int phuongtienid)
         {
-            var result = await _phuongTienService.Delete(ngtggiaothongid);
+            var result = await _phuongTienService.Delete(phuongtienid);
             if (result == 0)
                 return BadRequest();
             return Ok();
+        }
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromBody] PhuongTienViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _phuongTienService.Edit(model);
+            return Ok(result);
         }
        
     }

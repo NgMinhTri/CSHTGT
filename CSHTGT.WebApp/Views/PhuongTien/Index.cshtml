@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CSHTGT.ViewModels.PhuongTienViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Hồ sơ đăng kí phương tiện";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,12 +17,11 @@
         </div>
     </p>
     <div class="table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>
+                    <th>                      
                         Họ tên
-
                     </th>
                     <th>
                         Địa chỉ
@@ -48,7 +47,6 @@
                     <th>
                         Password
                     </th>
-
                     <th>
                         Tên phương tiện
                     </th>
@@ -77,67 +75,68 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HoTen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CMND)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NgaySinh)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.QueQuan)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SDT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PassWord)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenPT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BienSo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NhanHieu)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SoChoNgoi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SoKhung)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SoMay)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Sửa", "Edit", new {  id=item.ID })
-                        @Html.ActionLink("Xóa", "DeletePT", new { id = item.ID })
-                        
-                    </td>
-                </tr>
-                
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoTen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CMND)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QueQuan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PassWord)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenPT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BienSo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NhanHieu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoChoNgoi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoKhung)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoMay)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
+
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "UpdatePT", new { id = item.ID })
+                            @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
+
+                        </td>
+                    </tr>
+
                 }
             </tbody>
         </table>
     </div>
-
-
+    
 </div>
+ 

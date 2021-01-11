@@ -1,5 +1,6 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,23 +12,59 @@ namespace CSHTGT.WebApp.Controllers
 {
     public class PhuongTienController : Controller
     {
+                                     //LẤY RA DANH SÁCH PHƯƠNG TIEENH ĐÃ ĐÁNG KÍ
         public async Task<IActionResult> Index()
         {
-            List<PhuongTienViewModel> listPhuongTien = new List<PhuongTienViewModel>();
+            List<PhuongTienViewModel> listPhuongTien = new List<PhuongTienViewModel>();            
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:5001/api/PhuongTien"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    listPhuongTien = JsonConvert.DeserializeObject<List<PhuongTienViewModel>>(apiResponse);
-                }
-            }
+                    listPhuongTien = JsonConvert.DeserializeObject<List<PhuongTienViewModel>>(apiResponse);                    
+                }           
+            }          
             return View(listPhuongTien);
         }
-        public IActionResult AddPhuongTien()
+
+        //PHẦN XÓA DANH SÁCH ĐĂNG KÍ PHƯƠNG TIỆN       
+        public ActionResult DeletePT(int id)
         {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:5001/api/");
+
+                //HTTP DELETE
+                var deleteTask = client.DeleteAsync("PhuongTien/" + id);
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        //PHẦN ĐĂNG KÍ PHƯƠNG TIỆN_ĐĂNG KÍ MỚI
+        public async Task<IActionResult> AddPhuongTien()
+        {
+            List<LoaiPhuongTienViewModel> listLoaiPhuongTien = new List<LoaiPhuongTienViewModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response =await httpClient.GetAsync("https://localhost:5001/api/LoaiPhuongTien"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listLoaiPhuongTien = JsonConvert.DeserializeObject<List<LoaiPhuongTienViewModel>>(apiResponse);
+                }
+            }
+            ViewData["MaLoaiPhuongTien"] = new SelectList(listLoaiPhuongTien, "ID", "TenLoai");
             return View();
         }
+        
         [HttpPost]
         public IActionResult AddPhuongTien(PhuongTienViewModel phuongTienViewModel)
         {
@@ -44,24 +81,8 @@ namespace CSHTGT.WebApp.Controllers
             ModelState.AddModelError("", "Đăng kí phương tiện thất bại");
             return View(phuongTienViewModel);
         }
-        
-        public ActionResult DeletePT(int id)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:5001/api/");             
-                var deleteTask = client.DeleteAsync("PhuongTien/" + id);
-                deleteTask.Wait();
 
-                var result = deleteTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    TempData["result"] = "Đã xóa hồ sơ đăng kí";
-                    return RedirectToAction("Index");
-                   
-                }
-            }
-            return RedirectToAction("Index");
-        }
+       
+
     }
 }

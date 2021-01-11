@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CSHTGT.ViewModels
 {
     public class PhuongTienViewModel
     {
+        
+        public int MaPT { get; set; }
         public string TenPT { get; set; }
         public string BienSo { get; set; }
         public string NhanHieu { get; set; }
@@ -18,7 +21,11 @@ namespace CSHTGT.ViewModels
         public string DiaChi { get; set; }
         public string CMND { get; set; }
         public string Email { get; set; }
+
+      
         public DateTime NgaySinh { get; set; }
+
+
         public string QueQuan { get; set; }
         public string SDT { get; set; }
         public string PassWord { get; set; }

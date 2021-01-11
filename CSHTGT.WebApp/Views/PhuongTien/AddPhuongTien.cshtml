@@ -1,6 +1,4 @@
 ﻿@model CSHTGT.ViewModels.PhuongTienViewModel
-
-
 @{
     ViewData["Title"] = "Đăng kí phương tiện";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -50,15 +48,14 @@
                     <label asp-for="SoMay" class="control-label">Số máy</label>
                     <input asp-for="SoMay" class="form-control" />
                     <span asp-validation-for="SoMay" class="text-danger"></span>
-                </div>
-
+                </div>             
                 <div class="form-group">
                     <label asp-for="MaLoaiPhuongTien" class="control-label">Loại phương tiện</label>
-                    <select name="MaLoaiPhuongTien" onchange="this.form.submit()" asp-items="@ViewBag.Categories" class="form-control">
+                    <select name="MaLoaiPhuongTien" asp-items="@ViewBag.MaLoaiPhuongTien" class="form-control">
                         <option>--Chọn danh mục--</option>
                     </select>
+                 </div>
 
-                </div>
                 <h5>Nhập thông tin chủ phương tiện</h5>
                 <div class="form-group">
                     <label asp-for="HoTen" class="control-label">Họ tên(*)</label>

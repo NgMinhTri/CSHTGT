@@ -12,14 +12,10 @@ namespace CSHTGT.Service.Service
 {
     public class PhuongTienService : IPhuongTienService
     {
-        private readonly CSHTGTDbContext _context;
-        private readonly ILoaiPhuongTienService _loaiPhuongTienService;
-        public PhuongTienService(CSHTGTDbContext context,
-            ILoaiPhuongTienService loaiPhuongTienService)
+        private readonly CSHTGTDbContext _context;       
+        public PhuongTienService(CSHTGTDbContext context)
         {
-            _context = context;
-            _loaiPhuongTienService = loaiPhuongTienService;
-
+            _context = context;            
         }
 
         public async Task<List<PhuongTienViewModel>> GetAll()
@@ -40,6 +36,7 @@ namespace CSHTGT.Service.Service
                 PassWord = x.n.PassWord,
                 UserName = x.n.UserName,
 
+                MaPT = x.p.MaPT,
                 TenPT = x.p.TenPT,
                 BienSo = x.p.BienSo,
                 NhanHieu = x.p.NhanHieu,
@@ -50,6 +47,7 @@ namespace CSHTGT.Service.Service
 
             }).ToListAsync();
         }
+        
         //đăng kí xe
         public async Task<int> Create(PhuongTienViewModel model)
         {
@@ -83,17 +81,71 @@ namespace CSHTGT.Service.Service
             _context.NguoiThamGiaGiaoThongs.Add(nguoithamgiagiaothong);
             await _context.SaveChangesAsync();
             return nguoithamgiagiaothong.ID;
-        } 
-        //thu hồi đăng kí xe
-        public async Task<int> Delete(int ngtggiaothongid)
+        }
+        
+        public async Task<int> Delete(int phuongtienid)
         {
-            var ngtggiaothong = await _context.NguoiThamGiaGiaoThongs.FindAsync(ngtggiaothongid);
-            if(ngtggiaothong == null)
+            var phuongtien = await _context.NguoiThamGiaGiaoThongs.FindAsync(phuongtienid);
+            if (phuongtien == null)
             {
-                throw new Exception($"Không tìm thấy hồ sơ đăng kí: {ngtggiaothongid}");
+                throw new Exception($"Không tìm thấy hồ sơ đăng kí: {phuongtienid}");
             }
-            _context.NguoiThamGiaGiaoThongs.Remove(ngtggiaothong);
+            _context.NguoiThamGiaGiaoThongs.Remove(phuongtien);
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<int> Edit(PhuongTienViewModel model)
+        {
+            var ngtggiaothong = await _context.NguoiThamGiaGiaoThongs.FindAsync(model.ID);
+            var phuongtien = await _context.PhuongTiens.FirstOrDefaultAsync(x => x.MaNgTGGiaoThong == model.ID);
+            if (ngtggiaothong == null || phuongtien == null)
+                throw new Exception($"Không tồn tại chủ sở hữu phương tiện");
+            ngtggiaothong.HoTen = model.HoTen;
+            ngtggiaothong.DiaChi = model.DiaChi;
+            ngtggiaothong.CMND = model.CMND;
+            ngtggiaothong.Email = model.Email;
+            ngtggiaothong.NgaySinh = model.NgaySinh;
+            ngtggiaothong.QueQuan = model.QueQuan;
+
+            phuongtien.TenPT = model.TenPT;
+            phuongtien.BienSo = model.BienSo;
+            phuongtien.NhanHieu = model.NhanHieu;
+            phuongtien.NhanHieu = model.NhanHieu;
+            phuongtien.SoChoNgoi = model.SoChoNgoi;
+            phuongtien.SoKhung = model.SoKhung;
+            phuongtien.SoKhung = model.SoMay;
+            return await _context.SaveChangesAsync();
+        }
+
+        //public async Task<PhuongTienViewModel> GetById(int id)
+        //{
+        //    var query = from n in _context.NguoiThamGiaGiaoThongs
+        //                join p in _context.PhuongTiens on n.ID equals p.MaNgTGGiaoThong
+        //                where n.ID == id
+        //                select new { n, p };
+
+        //    return  query.Select(x => new PhuongTienViewModel()
+        //    {
+        //        ID = x.n.ID,
+        //        HoTen = x.n.HoTen,
+        //        DiaChi = x.n.DiaChi,
+        //        CMND = x.n.CMND,
+        //        Email = x.n.Email,
+        //        NgaySinh = x.n.NgaySinh,
+        //        QueQuan = x.n.QueQuan,
+        //        SDT = x.n.SDT,
+        //        PassWord = x.n.PassWord,
+        //        UserName = x.n.UserName,
+
+        //        MaPT = x.p.MaPT,
+        //        TenPT = x.p.TenPT,
+        //        BienSo = x.p.BienSo,
+        //        NhanHieu = x.p.NhanHieu,
+        //        SoChoNgoi = x.p.SoChoNgoi,
+        //        SoKhung = x.p.SoKhung,
+        //        SoMay = x.p.SoMay,
+        //        MaLoaiPhuongTien = x.p.MaLoaiPT
+        //    }).FirstOrDefault();
+        //}
     }
 }
