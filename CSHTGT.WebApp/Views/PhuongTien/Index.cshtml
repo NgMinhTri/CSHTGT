@@ -1,52 +1,28 @@
 ﻿@model IEnumerable<CSHTGT.ViewModels.PhuongTien_NTGGTViewModel>
 
 @{
-    ViewData["Title"] = "Hồ sơ đăng kí phương tiện";
+    ViewData["Title"] = "Danh sách phương tiện";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Hồ sơ đăng kí phương tiện</h1>
+    <h1 class="mt-4">Danh sách phương tiện</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
-        <li class="breadcrumb-item">Hồ sơ đăng kí phương tiện</li>
+        <li class="breadcrumb-item">Danh sách phương tiện</li>
     </ol>
     <p>
-        @*<div class="form-group">
+        <div class="form-group">
             <a class="btn btn-primary" asp-action="AddPhuongTien" asp-controller="PhuongTien">Tạo mới</a>
-        </div>*@
+        </div>
     </p>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
-                <tr>
-                    <th>                      
-                        Họ tên
-                    </th>
-                    <th>
-                        Địa chỉ
-                    </th>
-                    <th>
-                        CMND
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Ngày sinh
-                    </th>
-                    <th>
-                        Quê quán
-                    </th>
-                    <th>
-                        SĐT
-                    </th>
+                <tr>                                        
                     <th>
                         UserName
-                    </th>
-                    <th>
-                        Password
-                    </th>
+                    </th>                    
                     <th>
                         Tên phương tiện
                     </th>
@@ -75,35 +51,11 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HoTen)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DiaChi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CMND)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgaySinh)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.QueQuan)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SDT)
-                        </td>
+                    <tr>                                                                                             
                         <td>
                             @Html.DisplayFor(modelItem => item.UserName)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PassWord)
-                        </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.TenPT)
                         </td>
@@ -127,7 +79,7 @@
 
                         </td>
                         <td>
-                            @Html.ActionLink("Sửa", "UpdatePT", new { id = item.ID })
+                            @Html.ActionLink("Sửa", "UpdatePT", new { id = item.MaPT })
                             @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
 
                         </td>

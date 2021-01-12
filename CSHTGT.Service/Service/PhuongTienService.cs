@@ -24,18 +24,9 @@ namespace CSHTGT.Service.Service
                         join p in _context.PhuongTiens on n.ID equals p.MaNgTGGiaoThong                        
                         select new { n, p };
             return await query.Select(x => new PhuongTien_NTGGTViewModel()
-            {
-                ID = x.n.ID,
-                HoTen = x.n.HoTen,
-                DiaChi = x.n.DiaChi,
-                CMND = x.n.CMND,
-                Email = x.n.Email,
-                NgaySinh = x.n.NgaySinh,
-                QueQuan = x.n.QueQuan,
-                SDT = x.n.SDT,
-                PassWord = x.n.PassWord,
+            {               
+                                
                 UserName = x.n.UserName,
-
                 MaPT = x.p.MaPT,
                 TenPT = x.p.TenPT,
                 BienSo = x.p.BienSo,
@@ -53,18 +44,11 @@ namespace CSHTGT.Service.Service
         {
             
             var nguoithamgiagiaothong = new NguoiThamGiaGiaoThong()
-            {
-               
-                HoTen = model.HoTen,
-                DiaChi = model.DiaChi,
-                CMND = model.CMND,
-                Email = model.Email,
-                NgaySinh = model.NgaySinh,
-                QueQuan = model.QueQuan,
-                SDT = model.SDT,
-                PassWord = model.PassWord,
-                UserName = model.UserName,  
-                
+            {               
+                //HoTen = model.HoTen,                
+                //CMND = model.CMND,
+                //Email = model.Email,                
+                UserName = model.UserName,                  
                 PhuongTiens = new List<PhuongTien>()
                 {
                     new PhuongTien()
@@ -102,39 +86,41 @@ namespace CSHTGT.Service.Service
             await _context.SaveChangesAsync();
             return phuongtien.MaPT;
         }
+
+        //xóa phương tiện
         public async Task<int> Delete(int phuongtienid)
         {
-            var phuongtien = await _context.NguoiThamGiaGiaoThongs.FindAsync(phuongtienid);
+            var phuongtien = await _context.PhuongTiens.FindAsync(phuongtienid);
             if (phuongtien == null)
             {
                 throw new Exception($"Không tìm thấy hồ sơ đăng kí: {phuongtienid}");
             }
-            _context.NguoiThamGiaGiaoThongs.Remove(phuongtien);
+            _context.PhuongTiens.Remove(phuongtien);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Edit(PhuongTien_NTGGTViewModel model)
-        {
-            var ngtggiaothong = await _context.NguoiThamGiaGiaoThongs.FindAsync(model.ID);
-            var phuongtien = await _context.PhuongTiens.FirstOrDefaultAsync(x => x.MaNgTGGiaoThong == model.ID);
-            if (ngtggiaothong == null || phuongtien == null)
-                throw new Exception($"Không tồn tại chủ sở hữu phương tiện");
-            ngtggiaothong.HoTen = model.HoTen;
-            ngtggiaothong.DiaChi = model.DiaChi;
-            ngtggiaothong.CMND = model.CMND;
-            ngtggiaothong.Email = model.Email;
-            ngtggiaothong.NgaySinh = model.NgaySinh;
-            ngtggiaothong.QueQuan = model.QueQuan;
+        //public async Task<int> Edit(PhuongTien_NTGGTViewModel model)
+        //{
+        //    var ngtggiaothong = await _context.NguoiThamGiaGiaoThongs.FindAsync(model.ID);
+        //    var phuongtien = await _context.PhuongTiens.FirstOrDefaultAsync(x => x.MaNgTGGiaoThong == model.ID);
+        //    if (ngtggiaothong == null || phuongtien == null)
+        //        throw new Exception($"Không tồn tại chủ sở hữu phương tiện");
+        //    ngtggiaothong.HoTen = model.HoTen;
+        //    //ngtggiaothong.DiaChi = model.DiaChi;
+        //    ngtggiaothong.CMND = model.CMND;
+        //    ngtggiaothong.Email = model.Email;
+        //   // ngtggiaothong.NgaySinh = model.NgaySinh;
+        //   // ngtggiaothong.QueQuan = model.QueQuan;
 
-            phuongtien.TenPT = model.TenPT;
-            phuongtien.BienSo = model.BienSo;
-            phuongtien.NhanHieu = model.NhanHieu;
-            phuongtien.NhanHieu = model.NhanHieu;
-            phuongtien.SoChoNgoi = model.SoChoNgoi;
-            phuongtien.SoKhung = model.SoKhung;
-            phuongtien.SoKhung = model.SoMay;
-            return await _context.SaveChangesAsync();
-        }
+        //    phuongtien.TenPT = model.TenPT;
+        //    phuongtien.BienSo = model.BienSo;
+        //    phuongtien.NhanHieu = model.NhanHieu;
+        //    phuongtien.NhanHieu = model.NhanHieu;
+        //    phuongtien.SoChoNgoi = model.SoChoNgoi;
+        //    phuongtien.SoKhung = model.SoKhung;
+        //    phuongtien.SoKhung = model.SoMay;
+        //    return await _context.SaveChangesAsync();
+        //}
 
         //public async Task<PhuongTienViewModel> GetById(int id)
         //{
@@ -166,21 +152,21 @@ namespace CSHTGT.Service.Service
         //        MaLoaiPhuongTien = x.p.MaLoaiPT
         //    }).FirstOrDefault();
         //}
-        public async Task<PhuongTien_NTGGTViewModel> GetNgTGGTByUserName(string username)
-        {
-            var query = from p in _context.NguoiThamGiaGiaoThongs
-                        where p.UserName == username
-                        select new { p };
-            return await query.Select(x => new PhuongTien_NTGGTViewModel()
-            {
-                HoTen = x.p.HoTen,
-                DiaChi = x.p.DiaChi,
-                CMND = x.p.CMND,
-                NgaySinh = x.p.NgaySinh,
-                UserName = x.p.UserName
-            }).FirstOrDefaultAsync();
+        //public async Task<PhuongTien_NTGGTViewModel> GetNgTGGTByUserName(string username)
+        //{
+        //    var query = from p in _context.NguoiThamGiaGiaoThongs
+        //                where p.UserName == username
+        //                select new { p };
+        //    return await query.Select(x => new PhuongTien_NTGGTViewModel()
+        //    {
+        //        HoTen = x.p.HoTen,
+        //        DiaChi = x.p.DiaChi,
+        //        CMND = x.p.CMND,
+        //        NgaySinh = x.p.NgaySinh,
+        //        UserName = x.p.UserName
+        //    }).FirstOrDefaultAsync();
 
-        }
+        //}
 
       
     }

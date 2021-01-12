@@ -42,34 +42,34 @@ namespace CSHTGT.WebAPI.Controllers
             return Ok(result);
         }
         //TẠO HỒ SƠ ĐĂNG KÍ KHI ĐÃ CÓ NTGGT, CHỈ CẦN NHẬP PHƯƠNG TIỆN
-        [HttpPost("phuongtien")]
-        [Authorize]
-        public async Task<IActionResult> CreatePT([FromBody]PhuongTienViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var result = await _phuongTienService.CreatePT(model);
-            return Ok(result);
-        }
+        //[HttpPost("phuongtien")]
+        //[Authorize]
+        //public async Task<IActionResult> CreatePT([FromBody]PhuongTienViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
+        //    var result = await _phuongTienService.CreatePT(model);
+        //    return Ok(result);
+        //}
 
         [HttpDelete("phuongtienid")]
-        public async Task<IActionResult> Delete(int phuongtienid)
+        public async Task<IActionResult> DeletePhuongTien(int MaPT)
         {
-            var result = await _phuongTienService.Delete(phuongtienid);
+            var result = await _phuongTienService.Delete(MaPT);
             if (result == 0)
                 return BadRequest();
             return Ok();
         }
 
 
-        [HttpPut]
-        public async Task<IActionResult> Edit([FromBody] PhuongTien_NTGGTViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var result = await _phuongTienService.Edit(model);
-            return Ok(result);
-        }
+        //[HttpPut]
+        //public async Task<IActionResult> Edit([FromBody] PhuongTien_NTGGTViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
+        //    var result = await _phuongTienService.Edit(model);
+        //    return Ok(result);
+        //}
 
         //[HttpGet("UserName")]
         //public async Task<IActionResult> getNguoiThamGiaGiaoThongByUserName(string username)

@@ -16,6 +16,14 @@ namespace CSHTGT.ViewModels
                 .GreaterThanOrEqualTo(1);
             RuleFor(x => x.SoKhung).NotEmpty().WithMessage("Nhập số khung");
             RuleFor(x => x.SoMay).NotEmpty().WithMessage("Nhập số máy");
+
+            //RuleFor(x => x).Custom((request, context) =>
+            //{
+            //    if(request.BienSo == request.BienSo)
+            //    {
+            //        context.AddFailure("Biển số đã tồn tại");
+            //    }    
+            //});
         }
     }
     

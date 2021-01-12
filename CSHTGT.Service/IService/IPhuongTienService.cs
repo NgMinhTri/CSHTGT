@@ -11,10 +11,10 @@ namespace CSHTGT.Service.IService
         Task<List<PhuongTien_NTGGTViewModel>> GetAll();
         //Task<PhuongTienViewModel> GetById(int id);
         Task<int> Create_NTGGT_PT(PhuongTien_NTGGTViewModel model);
-        Task<int> CreatePT(PhuongTienViewModel model);
-        Task<int> Edit(PhuongTien_NTGGTViewModel model);
-        Task<int> Delete(int ngtggiaothongid);
-        Task<PhuongTien_NTGGTViewModel> GetNgTGGTByUserName(string username);
+       // Task<int> CreatePT(PhuongTienViewModel model);
+       // Task<int> Edit(PhuongTien_NTGGTViewModel model);
+       Task<int> Delete(int phuongtienid);
+       // Task<PhuongTien_NTGGTViewModel> GetNgTGGTByUserName(string username);
       
 
     }
