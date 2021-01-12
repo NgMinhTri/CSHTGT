@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CSHTGT.Data\CSHTGT.Data.csproj" />
     <ProjectReference Include="..\CSHTGT.ViewModels\CSHTGT.ViewModels.csproj" />
   </ItemGroup>

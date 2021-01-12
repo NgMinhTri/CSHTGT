@@ -1,85 +1,108 @@
-﻿@model System.Data.DataTable
+﻿@model IEnumerable<CSHTGT.ViewModels.BienBanViPhamViewModel>
 
 @{
-    ViewData["Title"] = "List of BBVP";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .add {
-        padding: 5px 10px;
-        color: black;
-        font-weight: bold;
-    }
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách biên bản vi phạm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
+        <li class="breadcrumb-item">Biên bản vi phạm</li>
+    </ol>
+    <p>
+        <div class="form-group">
+            <a class="btn btn-primary" asp-action="AddBBVP" asp-controller="BienBanViPham">Tạo mới</a>
+        </div>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Mã người tham gia giao thông
 
-        .add a {
-            color: black;
-        }
+                    </th>
+                    <th>
+                        Mã hình thức xử phạt
+                    </th>
+                    <th>
+                        Mã cán bộ
+                    </th>
+                    <th>
+                        Ngày lập
+                    </th>
+                    <th>
+                        Ngày vi phạm
+                    </th>
+                    <th>
+                        Hạn nộp phạt
+                    </th>
+                    <th>
+                        Lỗi vi phạm
+                    </th>
+                    <th>
+                        Số quyết định
+                    </th>
+                    <th>
+                        Số tiền phạt
+                    </th>
 
-        .add:hover {
-            text-decoration: none;
-            color: #0073e6;
-        }
+                    <th>
+                        Tình trạng nộp phạt
+                    </th>
 
-    .view, .delete {
-        padding: 5px 10px;
-    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
 
-        .view:hover {
-            background-color: #0073e6;
-            text-decoration: none;
-            color: white;
-        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaNgTGGiaoThong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaHinhThucXuPhat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaCanBo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayLap)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayViPham)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HanNopPhat)
 
-        .delete:hover {
-            background-color: #ff0000;
-            text-decoration: none;
-            color: white;
-        }
-</style>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoiViPham)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoQuyetDinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoTienPhat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TinhTrangNopPhat)
+                        </td
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaBienBan })
+                            @Html.ActionLink("Xóa", "DeleteBBVP", new { id = item.MaBienBan })
 
-<h2>Danh sach Bien ban vi pham</h2>
+                        </td>
+                    </tr>
 
-<a class="add" asp-action="AddOrEdit">+ Create</a>
-<table class="table table-bordered">
-    <thead class="thead-light">
-        <tr>
-            <th>
-                Ma bien ban
-            </th>
-            <th>
-                Loi Vi Pham
-            </th>
-            <th>
-                Ngay Lap
-            </th>
-            <th>
-                Tinh Trang Nop Phat
-            </th>
+                }
+            </tbody>
+        </table>
+    </div>
 
-        </tr>
-    </thead>
-    <tbody>
-        @for (int i = 0; i < Model.Rows.Count; i++)
-        {
-            <tr>
-                <td>
-                    @Model.Rows[i]["MaBienBan"]
-                </td>
-                <td>
-                    @Model.Rows[i]["LoiViPham"]
-                </td>
-                <td>
-                    @Model.Rows[i]["NgayLap"]
-                </td>
-                <td>
-                    @Model.Rows[i]["TinhTrangNopPhat"]
-                </td>
-                <td>
-                    <a class="view" asp-action="View" asp-route-id="@Model.Rows[i]["MaBienBan"]">View</a> |
-                    <a class="edit" asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["MaBienBan"]">Edit</a> |
-                    <a class="delete" asp-action="Delete" asp-route-id="@Model.Rows[i]["MaBienBan"]">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+</div>
