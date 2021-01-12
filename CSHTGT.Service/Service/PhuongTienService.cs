@@ -147,5 +147,20 @@ namespace CSHTGT.Service.Service
         //        MaLoaiPhuongTien = x.p.MaLoaiPT
         //    }).FirstOrDefault();
         //}
+        public async Task<PhuongTienViewModel> GetNgTGGTByUserName(string username)
+        {
+            var query = from p in _context.NguoiThamGiaGiaoThongs
+                        where p.UserName == username
+                        select new { p };
+            return await query.Select(x => new PhuongTienViewModel()
+            {
+                HoTen = x.p.HoTen,
+                DiaChi = x.p.DiaChi,
+                CMND = x.p.CMND,
+                NgaySinh = x.p.NgaySinh,
+                UserName = x.p.UserName
+            }).FirstOrDefaultAsync();
+
+        }
     }
 }

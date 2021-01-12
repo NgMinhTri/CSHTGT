@@ -13,6 +13,8 @@ namespace CSHTGT.Service.IService
         Task<int> Create(PhuongTienViewModel model);
         Task<int> Edit(PhuongTienViewModel model);
         Task<int> Delete(int ngtggiaothongid);
-        
+        Task<PhuongTienViewModel> GetNgTGGTByUserName(string username);
+
+
     }
 }
