@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CSHTGT.Service\CSHTGT.Service.csproj" />
+    <ProjectReference Include="..\CSHTGT.ViewModels\CSHTGT.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
