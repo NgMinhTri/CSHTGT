@@ -27,6 +27,13 @@ namespace CSHTGT.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
+            modelBuilder.Entity<NguoiThamGiaGiaoThong>()
+                .HasIndex(n => new { n.CMND, n.SDT, n.Email, n.UserName })
+                .IsUnique();
+
+            modelBuilder.Entity<PhuongTien>()
+                .HasIndex(p => new { p.BienSo })
+                .IsUnique();
         }
 
     }

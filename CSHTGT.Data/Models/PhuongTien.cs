@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CSHTGT.Data.Models
 {
     [Table("PhuongTien")]
+   
     public class PhuongTien
     {
         [Key]
@@ -19,6 +20,7 @@ namespace CSHTGT.Data.Models
 
         [Required]
         [MaxLength(20)]
+       
         public string BienSo { get; set; }
 
         [Required]

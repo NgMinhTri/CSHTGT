@@ -1,5 +1,6 @@
 ﻿using CSHTGT.Service.IService;
 using CSHTGT.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,14 +32,26 @@ namespace CSHTGT.WebAPI.Controllers
         //    var phuongtien = await _phuongTienService.GetById(id);
         //    return Ok(phuongtien);
         //}
-        [HttpPost]       
-        public async Task<IActionResult> Create([FromBody]PhuongTienViewModel model)
+        //tạo mới hồ sơ đăng kí MỚI bao gồm NTGGT VÀ PHƯƠNG TIỆN
+        [HttpPost]
+        public async Task<IActionResult> CreateNTGGT_PT([FromBody] PhuongTien_NTGGTViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _phuongTienService.Create(model);
+            var result = await _phuongTienService.Create_NTGGT_PT(model);
             return Ok(result);
         }
+        //TẠO HỒ SƠ ĐĂNG KÍ KHI ĐÃ CÓ NTGGT, CHỈ CẦN NHẬP PHƯƠNG TIỆN
+        [HttpPost("phuongtien")]
+        [Authorize]
+        public async Task<IActionResult> CreatePT([FromBody]PhuongTienViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _phuongTienService.CreatePT(model);
+            return Ok(result);
+        }
+
         [HttpDelete("phuongtienid")]
         public async Task<IActionResult> Delete(int phuongtienid)
         {
@@ -47,15 +60,23 @@ namespace CSHTGT.WebAPI.Controllers
                 return BadRequest();
             return Ok();
         }
+
+
         [HttpPut]
-        public async Task<IActionResult> Edit([FromBody] PhuongTienViewModel model)
+        public async Task<IActionResult> Edit([FromBody] PhuongTien_NTGGTViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _phuongTienService.Edit(model);
             return Ok(result);
         }
-        public async Task<IActionResult> 
-       
+
+        //[HttpGet("UserName")]
+        //public async Task<IActionResult> getNguoiThamGiaGiaoThongByUserName(string username)
+        //{
+        //    var phuongtien = await _phuongTienService.GetNgTGGTByUserName(username);
+        //    return Ok(phuongtien);
+        //}
+
     }
 }

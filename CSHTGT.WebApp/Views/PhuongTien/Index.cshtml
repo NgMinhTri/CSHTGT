@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CSHTGT.ViewModels.PhuongTienViewModel>
+﻿@model IEnumerable<CSHTGT.ViewModels.PhuongTien_NTGGTViewModel>
 
 @{
     ViewData["Title"] = "Hồ sơ đăng kí phương tiện";
@@ -12,9 +12,9 @@
         <li class="breadcrumb-item">Hồ sơ đăng kí phương tiện</li>
     </ol>
     <p>
-        <div class="form-group">
+        @*<div class="form-group">
             <a class="btn btn-primary" asp-action="AddPhuongTien" asp-controller="PhuongTien">Tạo mới</a>
-        </div>
+        </div>*@
     </p>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

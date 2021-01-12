@@ -1,6 +1,9 @@
 using CSHTGT.Data.Context;
 using CSHTGT.Service.IService;
 using CSHTGT.Service.Service;
+using CSHTGT.ViewModels;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +32,16 @@ namespace CSHTGT.WebAPI
             //declare DI
             services.AddTransient<ILoaiPhuongTienService, LoaiPhuongTienService>();
             services.AddTransient<IPhuongTienService, PhuongTienService>();
+
+            //Validation cho ViewModel
+            services.AddTransient<IValidator<PhuongTienViewModel>, PhuongTienValidator>();
+
+
             services.AddControllersWithViews();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<PhuongTienValidator>());
+
+            //Khai bao swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test các API", Version = "v1" });
