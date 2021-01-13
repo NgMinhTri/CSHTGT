@@ -40,6 +40,12 @@
                         Số máy
                     </th>
                     <th>
+                        Tải trọng
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th>
                         Loại phương tiện
                     </th>
 
@@ -48,40 +54,47 @@
             </thead>
             <tbody>
                 @foreach (var item in Model)
-                {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
+    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.TenPT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BienSo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhanHieu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoChoNgoi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoKhung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoMay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenPT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BienSo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanHieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoChoNgoi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoKhung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoMay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaiTrong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
 
-        </td>
-        <td>
-            @Html.ActionLink("Sửa", "UpdatePT", new { id = item.MaPT })
-            @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "UpdatePT", new { id = item.MaPT })
+                        @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
 
-        </td>
-    </tr>}
+                    </td>
+                </tr>
+    }
             </tbody>
         </table>
     </div>

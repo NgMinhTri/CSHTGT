@@ -40,11 +40,7 @@ namespace CSHTGT.Data.Context
         //{
         //    modelBuilder.Seed();
         //}
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                @"Server=LAPTOP-CURK33BG\MSBI;Database=CSHTGT;Trusted_Connection=True;");
-        }
+        
 
     }
 }

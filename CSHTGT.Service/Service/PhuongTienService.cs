@@ -28,9 +28,7 @@ namespace CSHTGT.Service.Service
                         join p in _context.PhuongTiens on n.ID equals p.MaNgTGGiaoThong                        
                         select new { n, p };
             return await query.Select(x => new PhuongTienViewModel()
-            {                
-               // UserName = x.n.UserName,
-
+            {                              
                 MaPT = x.p.MaPT,
                 TenPT = x.p.TenPT,
                 BienSo = x.p.BienSo,
@@ -39,19 +37,13 @@ namespace CSHTGT.Service.Service
                 SoKhung = x.p.SoKhung,
                 SoMay = x.p.SoMay,
                 UserName = x.n.UserName,
-
                 MaLoaiPhuongTien = x.p.MaLoaiPT
-
             }).ToListAsync();
         }
         //đăng kí xe
         public async Task<int> CreatePT(PhuongTienViewModel model)
         {
-            var query = _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == model.CMND).FirstOrDefaultAsync().Result;
-            if(query == null)
-            {
-                throw new Exception($"Không tìm thấy CMND");
-            }    
+            var query = _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == model.CMND).FirstOrDefaultAsync().Result;               
             var phuongtien = new PhuongTien()
             {
                 TenPT = model.TenPT,
@@ -61,6 +53,7 @@ namespace CSHTGT.Service.Service
                 SoKhung = model.SoKhung,
                 SoMay = model.SoMay,
                 TaiTrong = model.TaiTrong,
+                TrangThai = model.TrangThai,
                 MaLoaiPT = model.MaLoaiPhuongTien,
                 MaNgTGGiaoThong = query.ID
             };

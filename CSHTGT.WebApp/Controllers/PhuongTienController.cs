@@ -40,6 +40,7 @@ namespace CSHTGT.WebApp.Controllers
             ViewData["MaLoaiPhuongTien"] = new SelectList(listLoaiPhuongTien, "ID", "TenLoai");
             return View();
         }
+
         [HttpPost]
         public IActionResult AddPhuongTien(PhuongTienViewModel phuongTienViewModel)
         {

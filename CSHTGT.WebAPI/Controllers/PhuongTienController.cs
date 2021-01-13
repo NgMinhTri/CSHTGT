@@ -30,7 +30,7 @@ namespace CSHTGT.WebAPI.Controllers
             return Ok(phuongtien);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]PhuongTienViewModel model)
+        public async Task<IActionResult> Create([FromForm]PhuongTienViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
