@@ -34,13 +34,13 @@ namespace CSHTGT.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _phuongTienService.Create(model);
+            var result = await _phuongTienService.CreatePT(model);
             return Ok(result);
         }
-        [HttpDelete("{ngtggiaothongid}")]
-        public async Task<IActionResult> Delete(int ngtggiaothongid)
+        [HttpDelete("{phuongtienid}")]
+        public async Task<IActionResult> Delete(int phuongtienid)
         {
-            var result = await _phuongTienService.Delete(ngtggiaothongid);
+            var result = await _phuongTienService.Delete(phuongtienid);
             if (result == 0)
                 return BadRequest();
             return Ok();

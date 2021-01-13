@@ -20,7 +20,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>
+                    @*<th>
                         Họ tên
 
                     </th>
@@ -41,13 +41,13 @@
                     </th>
                     <th>
                         SĐT
-                    </th>
+                    </th>*@
                     <th>
                         UserName
                     </th>
-                    <th>
+                    @*<th>
                         Password
-                    </th>
+                    </th>*@
 
                     <th>
                         Tên phương tiện
@@ -79,7 +79,7 @@
                 {
                 <tr>
                     
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.HoTen)
                     </td>
                     <td>
@@ -99,13 +99,13 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.SDT)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.PassWord)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.TenPT)
                     </td>
@@ -128,8 +128,8 @@
                         @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
                     </td>
                     <td>
-                        @Html.ActionLink("Sửa", "Edit", new {  id=item.ID })
-                        @Html.ActionLink("Xóa", "DeletePT", new { id = item.ID })
+                        @Html.ActionLink("Sửa", "Edit", new {  id=item.MaPT })
+                        @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
                         
                     </td>
                 </tr>

@@ -1,5 +1,6 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,19 @@ namespace CSHTGT.WebApp.Controllers
             }
             return View(listPhuongTien);
         }
-        public IActionResult AddPhuongTien()
+
+        public async Task<IActionResult> AddPhuongTien()
         {
+            List<LoaiPhuongTienViewModel> listLoaiPhuongTien = new List<LoaiPhuongTienViewModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/LoaiPhuongTien"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listLoaiPhuongTien = JsonConvert.DeserializeObject<List<LoaiPhuongTienViewModel>>(apiResponse);
+                }
+            }
+            ViewData["MaLoaiPhuongTien"] = new SelectList(listLoaiPhuongTien, "ID", "TenLoai");
             return View();
         }
         [HttpPost]

@@ -28,18 +28,10 @@ namespace CSHTGT.Service.Service
                         join p in _context.PhuongTiens on n.ID equals p.MaNgTGGiaoThong                        
                         select new { n, p };
             return await query.Select(x => new PhuongTienViewModel()
-            {
-                ID = x.n.ID,
-                HoTen = x.n.HoTen,
-                DiaChi = x.n.DiaChi,
-                CMND = x.n.CMND,
-                Email = x.n.Email,
-                NgaySinh = x.n.NgaySinh,
-                QueQuan = x.n.QueQuan,
-                SDT = x.n.SDT,
-                PassWord = x.n.PassWord,
-                UserName = x.n.UserName,
+            {                
+               // UserName = x.n.UserName,
 
+                MaPT = x.p.MaPT,
                 TenPT = x.p.TenPT,
                 BienSo = x.p.BienSo,
                 NhanHieu = x.p.NhanHieu,
@@ -51,48 +43,34 @@ namespace CSHTGT.Service.Service
             }).ToListAsync();
         }
         //đăng kí xe
-        public async Task<int> Create(PhuongTienViewModel model)
+        public async Task<int> CreatePT(PhuongTienViewModel model)
         {
-            var nguoithamgiagiaothong = new NguoiThamGiaGiaoThong()
+
+            var phuongtien = new PhuongTien()
             {
-               
-                HoTen = model.HoTen,
-                DiaChi = model.DiaChi,
-                CMND = model.CMND,
-                Email = model.Email,
-                NgaySinh = model.NgaySinh,
-                QueQuan = model.QueQuan,
-                SDT = model.SDT,
-                PassWord = model.PassWord,
-                UserName = model.UserName,  
-                
-                PhuongTiens = new List<PhuongTien>()
-                {
-                    new PhuongTien()
-                    {
-                        TenPT =  model.TenPT,
-                        BienSo = model.BienSo,
-                        NhanHieu = model.NhanHieu,
-                        SoChoNgoi = model.SoChoNgoi,
-                        SoKhung = model.SoKhung,
-                        SoMay = model.SoMay,
-                        MaLoaiPT = model.MaLoaiPhuongTien,                                          
-                    }
-                }
+                TenPT = model.TenPT,
+                BienSo = model.BienSo,
+                NhanHieu = model.NhanHieu,
+                SoChoNgoi = model.SoChoNgoi,
+                SoKhung = model.SoKhung,
+                SoMay = model.SoMay,
+                TaiTrong = model.TaiTrong,
+                MaLoaiPT = model.MaLoaiPhuongTien,
+                MaNgTGGiaoThong = model.MaNTGGT
             };
-            _context.NguoiThamGiaGiaoThongs.Add(nguoithamgiagiaothong);
+            _context.PhuongTiens.Add(phuongtien);
             await _context.SaveChangesAsync();
-            return nguoithamgiagiaothong.ID;
-        } 
+            return phuongtien.MaPT;
+        }
         //thu hồi đăng kí xe
-        public async Task<int> Delete(int ngtggiaothongid)
+        public async Task<int> Delete(int phuongtienid)
         {
-            var ngtggiaothong = await _context.NguoiThamGiaGiaoThongs.FindAsync(ngtggiaothongid);
-            if(ngtggiaothong == null)
+            var phuongtien = await _context.PhuongTiens.FindAsync(phuongtienid);
+            if(phuongtien == null)
             {
-                throw new Exception($"Không tìm thấy hồ sơ đăng kí: {ngtggiaothongid}");
+                throw new Exception($"Không tìm thấy hồ sơ đăng kí: {phuongtienid}");
             }
-            _context.NguoiThamGiaGiaoThongs.Remove(ngtggiaothong);
+            _context.PhuongTiens.Remove(phuongtien);
             return await _context.SaveChangesAsync();
         }
     }
