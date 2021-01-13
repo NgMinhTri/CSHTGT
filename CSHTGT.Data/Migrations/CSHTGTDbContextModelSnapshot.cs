@@ -329,6 +329,9 @@ namespace CSHTGT.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CMND", "SDT", "Email", "UserName")
+                        .IsUnique();
+
                     b.ToTable("NguoiThamGiaGiaoThong");
                 });
 
@@ -405,6 +408,9 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("MaPT");
+
+                    b.HasIndex("BienSo")
+                        .IsUnique();
 
                     b.HasIndex("MaLoaiPT");
 

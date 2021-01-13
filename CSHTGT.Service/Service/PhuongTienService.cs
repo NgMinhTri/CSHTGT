@@ -38,6 +38,8 @@ namespace CSHTGT.Service.Service
                 SoChoNgoi = x.p.SoChoNgoi,
                 SoKhung = x.p.SoKhung,
                 SoMay = x.p.SoMay,
+                UserName = x.n.UserName,
+
                 MaLoaiPhuongTien = x.p.MaLoaiPT
 
             }).ToListAsync();
@@ -46,6 +48,10 @@ namespace CSHTGT.Service.Service
         public async Task<int> CreatePT(PhuongTienViewModel model)
         {
             var query = _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == model.CMND).FirstOrDefaultAsync().Result;
+            if(query == null)
+            {
+                throw new Exception($"Không tìm thấy CMND");
+            }    
             var phuongtien = new PhuongTien()
             {
                 TenPT = model.TenPT,

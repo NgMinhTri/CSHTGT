@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSHTGT.Data.Migrations
 {
-    public partial class DeleteTableDoanhNVT : Migration
+    public partial class SetUpAttribute : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,15 +56,15 @@ namespace CSHTGT.Data.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HoTen = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    DiaChi = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    CMND = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    HoTen = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    DiaChi = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    CMND = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
                     QueQuan = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    SDT = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    PassWord = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    SDT = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    PassWord = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,15 +164,14 @@ namespace CSHTGT.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaLoaiPT = table.Column<int>(type: "int", nullable: false),
                     MaNgTGGiaoThong = table.Column<int>(type: "int", nullable: false),
-                    TenPT = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    BienSo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    NhanHieu = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    TenPT = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    BienSo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    NhanHieu = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     SoChoNgoi = table.Column<int>(type: "int", nullable: false),
                     SoKhung = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     SoMay = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     TaiTrong = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    TrangThai = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    LoaiDangKy = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    TrangThai = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -300,6 +299,12 @@ namespace CSHTGT.Data.Migrations
                 column: "MaNgTGGiaoThong");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NguoiThamGiaGiaoThong_CMND_SDT_Email_UserName",
+                table: "NguoiThamGiaGiaoThong",
+                columns: new[] { "CMND", "SDT", "Email", "UserName" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PhieuDangKyThuTuc_MaDonVi",
                 table: "PhieuDangKyThuTuc",
                 column: "MaDonVi");
@@ -308,6 +313,12 @@ namespace CSHTGT.Data.Migrations
                 name: "IX_PhieuDangKyThuTuc_MaNgTGGiaoThong",
                 table: "PhieuDangKyThuTuc",
                 column: "MaNgTGGiaoThong");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhuongTien_BienSo",
+                table: "PhuongTien",
+                column: "BienSo",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PhuongTien_MaLoaiPT",

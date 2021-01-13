@@ -1,3 +1,6 @@
+using CSHTGT.ViewModels;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +31,12 @@ namespace CSHTGT.WebApp
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
+            services.AddTransient<IValidator<PhuongTienViewModel>, PhuongTienValidator>();
+
+
+            services.AddControllersWithViews();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<PhuongTienValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
