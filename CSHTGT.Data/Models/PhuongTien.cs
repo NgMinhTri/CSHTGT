@@ -37,7 +37,8 @@ namespace CSHTGT.Data.Models
         public string TaiTrong { get; set; }
 
         [MaxLength(250)]
-        public string TrangThai { get; set; }        
+        public string TrangThai { get; set; }     
+        public int XetDuyet { get; set; }
 
         [ForeignKey("MaLoaiPT")]
         public virtual LoaiPhuongTien LoaiPhuongTien { get; set; }

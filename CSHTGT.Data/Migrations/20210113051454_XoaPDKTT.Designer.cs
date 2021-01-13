@@ -4,14 +4,16 @@ using CSHTGT.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSHTGT.Data.Migrations
 {
     [DbContext(typeof(CSHTGTDbContext))]
-    partial class CSHTGTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210113051454_XoaPDKTT")]
+    partial class XoaPDKTT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -339,9 +341,6 @@ namespace CSHTGT.Data.Migrations
                     b.Property<int>("MaNgTGGiaoThong1")
                         .HasColumnType("int");
 
-                    b.Property<int>("MaNgTGGiaoThong2")
-                        .HasColumnType("int");
-
                     b.Property<int>("MaPhuongTien")
                         .HasColumnType("int");
 
@@ -358,8 +357,6 @@ namespace CSHTGT.Data.Migrations
                     b.HasIndex("MaLoaiDangKy");
 
                     b.HasIndex("MaNgTGGiaoThong1");
-
-                    b.HasIndex("MaNgTGGiaoThong2");
 
                     b.HasIndex("MaPhuongTien");
 
@@ -502,12 +499,6 @@ namespace CSHTGT.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CSHTGT.Data.Models.NguoiThamGiaGiaoThong", "NguoiThamGiaGiaoThong2")
-                        .WithMany()
-                        .HasForeignKey("MaNgTGGiaoThong2")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CSHTGT.Data.Models.PhuongTien", "PhuongTien")
                         .WithMany()
                         .HasForeignKey("MaPhuongTien")
@@ -519,8 +510,6 @@ namespace CSHTGT.Data.Migrations
                     b.Navigation("LoaiDangKy");
 
                     b.Navigation("NguoiThamGiaGiaoThong1");
-
-                    b.Navigation("NguoiThamGiaGiaoThong2");
 
                     b.Navigation("PhuongTien");
                 });
