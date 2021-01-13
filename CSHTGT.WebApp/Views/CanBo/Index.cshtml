@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CSHTGT.ViewModels.CanBoViewModel>
+
+@{
+    ViewData["Title"] = "Danh Sách Cán Bộ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Quản lý Cán bộ</h1>
+
+<p>
+    <a asp-action="AddCanBo">Thêm cán bộ</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDCanBo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaDonVi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CMND)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgaySinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCanBo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDonVi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMND)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id=item.IDCanBo}) |
+                    @Html.ActionLink("Xóa", "DeleteCB", new { id=item.IDCanBo })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
