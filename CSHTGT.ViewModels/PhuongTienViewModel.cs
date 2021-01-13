@@ -15,7 +15,7 @@ namespace CSHTGT.ViewModels
         public string SoMay { get; set; }
         public string TaiTrong { get; set; }
         public int MaNTGGT { get; set; }
-       
+        public string CMND { get; set; }
         public string UserName { get; set; }
         //khóa ngoại
         public int MaLoaiPhuongTien { get; set; }

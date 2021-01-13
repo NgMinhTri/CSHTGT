@@ -45,7 +45,7 @@ namespace CSHTGT.Service.Service
         //đăng kí xe
         public async Task<int> CreatePT(PhuongTienViewModel model)
         {
-
+            var query = _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == model.CMND).FirstOrDefaultAsync().Result;
             var phuongtien = new PhuongTien()
             {
                 TenPT = model.TenPT,
@@ -56,7 +56,7 @@ namespace CSHTGT.Service.Service
                 SoMay = model.SoMay,
                 TaiTrong = model.TaiTrong,
                 MaLoaiPT = model.MaLoaiPhuongTien,
-                MaNgTGGiaoThong = model.MaNTGGT
+                MaNgTGGiaoThong = query.ID
             };
             _context.PhuongTiens.Add(phuongtien);
             await _context.SaveChangesAsync();
