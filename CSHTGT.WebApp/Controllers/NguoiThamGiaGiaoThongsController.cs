@@ -1,4 +1,5 @@
 ﻿using System;
+using CSHTGT.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CSHTGT.Data.Context;
 using CSHTGT.Data.Models;
+using Newtonsoft.Json;
 
 namespace CSHTGT.WebApp.Controllers
 {
@@ -24,7 +26,6 @@ namespace CSHTGT.WebApp.Controllers
         {
             return View(await _context.NguoiThamGiaGiaoThongs.ToListAsync());
         }
-
         // GET: NguoiThamGiaGiaoThongs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
