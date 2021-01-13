@@ -13,7 +13,6 @@ namespace CSHTGT.Service.Service
     public class BienBanViPhamService : IBienBanViPhamService
     {
         private readonly CSHTGTDbContext _context;
-        private readonly ILoaiPhuongTienService _loaiPhuongTienService;
         public BienBanViPhamService(CSHTGTDbContext context)
         {
             _context = context;

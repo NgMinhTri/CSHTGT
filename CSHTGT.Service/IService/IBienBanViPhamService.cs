@@ -10,7 +10,6 @@ namespace CSHTGT.Service.IService
     {
         Task<List<BienBanViPhamViewModel>> getAll();
         Task<int> create(BienBanViPhamViewModel model);
-        //Task<int> Edit(BienBanViPhamViewModel model);
         Task<int> delete(int id);
 
 

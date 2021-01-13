@@ -9,39 +9,39 @@ using System.Threading.Tasks;
 
 namespace CSHTGT.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class BienBanViPhamController : ControllerBase
     {
+        public readonly IBienBanViPhamService _bienbanservice;
 
-        private readonly IBienBanViPhamService _bienBanViPhamService;
-
-        public BienBanViPhamController(IBienBanViPhamService bienBanViPhamService)
+        public BienBanViPhamController(IBienBanViPhamService service)
         {
-            _bienBanViPhamService = bienBanViPhamService;
+            _bienbanservice = service;
         }
 
         [HttpGet]
-        public async Task<IActionResult> getAllBienBanViPham()
+        public async Task<IActionResult> getAllBBVP()
         {
-            var bienban = await _bienBanViPhamService.getAll();
-            return Ok(bienban);
+            var phuongtien = await _bienbanservice.getAll();
+            return Ok(phuongtien);
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] BienBanViPhamViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _bienBanViPhamService.create(model);
+            var result = await _bienbanservice.create(model);
             return Ok(result);
         }
-        [HttpDelete("{mabienban}")]
+
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int ngtggiaothongid)
         {
-            var result = await _bienBanViPhamService.delete(ngtggiaothongid);
+            var result = await _bienbanservice.delete(ngtggiaothongid);
             if (result == 0)
                 return BadRequest();
             return Ok();
         }
-
-       
     }
 }
