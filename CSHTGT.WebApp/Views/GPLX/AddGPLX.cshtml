@@ -1,0 +1,62 @@
+﻿@model CSHTGT.ViewModels.GPLXViewModel
+
+@{
+    ViewData["Title"] = "AddGPLX";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+<h1 class="mt-4">Thêm GPLX</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddGPLX">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CMND" class="control-label"></label>
+                <input asp-for="CMND" class="form-control" />
+                <span asp-validation-for="CMND" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hang" class="control-label"></label>
+                <input asp-for="Hang" class="form-control" />
+                <span asp-validation-for="Hang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayTao" class="control-label"></label>
+                <input asp-for="NgayTao" class="form-control" />
+                <span asp-validation-for="NgayTao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayHetHan" class="control-label"></label>
+                <input asp-for="NgayHetHan" class="form-control" />
+                <span asp-validation-for="NgayHetHan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoGPLX" class="control-label"></label>
+                <input asp-for="SoGPLX" class="form-control" />
+                <span asp-validation-for="SoGPLX" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrangThai" class="control-label"></label>
+                <input asp-for="TrangThai" class="form-control" />
+                <span asp-validation-for="TrangThai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaDonVi" class="control-label"></label>
+                <input asp-for="MaDonVi" class="form-control" />
+                <span asp-validation-for="MaDonVi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>

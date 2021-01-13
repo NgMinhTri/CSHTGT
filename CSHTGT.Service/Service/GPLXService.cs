@@ -1,4 +1,5 @@
 ﻿using CSHTGT.Data.Context;
+using CSHTGT.Data.Models;
 using CSHTGT.Service.IService;
 using CSHTGT.ViewModels;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System;
 
 namespace CSHTGT.Service.Service
 {
-    class GPLXService : IGPLXService
+    public class GPLXService : IGPLXService
     {
         private readonly CSHTGTDbContext _context;
 
@@ -18,9 +19,23 @@ namespace CSHTGT.Service.Service
             _context = context;
         }
 
-        public Task<int> Create(GPLXViewModel gplx)
+        public async Task<int> Create(GPLXViewModel model)
         {
-            throw new System.NotImplementedException();
+            var query = _context.NguoiThamGiaGiaoThongs
+                                .Where(b => b.CMND == model.CMND).FirstOrDefaultAsync().Result;
+            var gplx = new GPLX()
+            {
+                MaNgTGGiaoThong = query.ID,
+                MaDonVi = model.MaDonVi,
+                Hang = model.Hang,
+                NgayTao = model.NgayTao,
+                NgayHetHan =model.NgayHetHan,
+                SoGPLX = model.SoGPLX,
+                TrangThai = model.TrangThai
+            };
+            _context.GPLXes.Add(gplx);
+            await _context.SaveChangesAsync();
+            return gplx.ID;
         }
 
         public async Task<int> Delete(int IDGPLX)
@@ -28,15 +43,26 @@ namespace CSHTGT.Service.Service
             var gplx = await _context.GPLXes.FindAsync(IDGPLX);
             if (gplx == null)
             {
-                throw new Exception($"Không tìm thấy hồ sơ đăng kí: {IDGPLX}");
+                throw new Exception($"Không tìm thấy GPLX: {IDGPLX}");
             }
             _context.GPLXes.Remove(gplx);
             return await _context.SaveChangesAsync();
         }
 
-        public Task<int> Edit(GPLXViewModel gplx)
+        public async Task<int> Edit(GPLXViewModel model)
         {
-            throw new System.NotImplementedException();
+            var gplx = await _context.GPLXes.FindAsync(model.ID);
+            var ngtggiaothong = _context.NguoiThamGiaGiaoThongs.Where(x=> x.CMND == model.CMND).FirstOrDefaultAsync().Result;
+            if (ngtggiaothong == null)
+                throw new Exception($"Không tồn tại người tham gia giao thông");
+            gplx.Hang = model.Hang;
+            gplx.MaNgTGGiaoThong = ngtggiaothong.ID;
+            gplx.MaDonVi = model.MaDonVi;
+            gplx.SoGPLX = model.SoGPLX;
+            gplx.NgayTao = model.NgayTao;
+            gplx.NgayHetHan = model.NgayHetHan;
+            gplx.TrangThai = model.TrangThai;
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<List<GPLXViewModel>> GetAll()

@@ -9,8 +9,8 @@ namespace CSHTGT.Service.IService
     public interface IGPLXService
     {
         Task<List<GPLXViewModel>> GetAll();
-        Task<int> Create(GPLXViewModel gplx);
-        Task<int> Edit(GPLXViewModel gplx);
+        Task<int> Create(GPLXViewModel model);
+        Task<int> Edit(GPLXViewModel model);
         Task<int> Delete(int IDGPLX);
         
     }
