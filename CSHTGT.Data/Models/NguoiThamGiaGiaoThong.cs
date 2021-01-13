@@ -12,19 +12,19 @@ namespace CSHTGT.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
        
-        [Required]
+        //[Required]
         [MaxLength(250)]
         public string HoTen { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(250)]
         public string DiaChi { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(250)]
         public string CMND { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(50)]
         public string Email { get; set; }
         public DateTime NgaySinh { get; set; }
@@ -32,15 +32,15 @@ namespace CSHTGT.Data.Models
         [MaxLength(250)]
         public string QueQuan { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(250)]
         public string SDT { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(250)]
         public string PassWord { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(250)]
         public string UserName { get; set; }
 
