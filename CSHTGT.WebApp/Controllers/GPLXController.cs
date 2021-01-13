@@ -1,5 +1,6 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,22 @@ namespace CSHTGT.WebApp.Controllers
             return View(listGPLX);
         }
 
-        public IActionResult AddGPLX()
+        
+        public async Task<IActionResult> AddGPLX()
         {
+            List<DonViViewModels> listDonVi = new List<DonViViewModels>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/DonVi"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listDonVi = JsonConvert.DeserializeObject<List<DonViViewModels>>(apiResponse);
+                }
+            }
+            ViewData["MaDonVi"] = new SelectList(listDonVi, "MaDonVi", "TenDonVi");
             return View();
         }
+
         [HttpPost]
         public IActionResult AddGPLX(GPLXViewModel gplxViewModel)
         {
@@ -45,7 +58,40 @@ namespace CSHTGT.WebApp.Controllers
             ModelState.AddModelError("", "Đăng kí GPLX thất bại");
             return View(gplxViewModel);
         }
+        public async Task<IActionResult> EditGPLX()
+        {
+            List<DonViViewModels> listDonVi = new List<DonViViewModels>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/DonVi"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listDonVi = JsonConvert.DeserializeObject<List<DonViViewModels>>(apiResponse);
+                }
+            }
+            ViewData["MaDonVi"] = new SelectList(listDonVi, "MaDonVi", "TenDonVi");
+            return View();
+        }
+        [HttpPut]
+        public IActionResult EditGPLX(int id)
+        {
+            GPLXViewModel gplx = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:5001/api/");
+                var responseTask = client.GetAsync("GPLX?ID=" + id);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<GPLXViewModel>();
+                    readTask.Wait();
 
+                    gplx = readTask.Result;
+                }
+            }      
+            return View(gplx);
+        }
         public ActionResult DeleteGPLX(int id)
         {
             using (var client = new HttpClient())

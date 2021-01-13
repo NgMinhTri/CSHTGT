@@ -22,6 +22,7 @@ namespace CSHTGT.Service.Service
             var query = from d in _context.DonVis select new { d };
             var data = await query.Select(x => new DonViViewModels()
             {
+                MaDonVi = x.d.MaDonVi,
                 TenDonVi = x.d.TenDonVi,
                 NhiemVu = x.d.NhiemVu,
                 DiaDiem = x.d.DiaDiem

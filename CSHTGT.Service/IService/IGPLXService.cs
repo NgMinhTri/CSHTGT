@@ -12,6 +12,6 @@ namespace CSHTGT.Service.IService
         Task<int> Create(GPLXViewModel model);
         Task<int> Edit(GPLXViewModel model);
         Task<int> Delete(int IDGPLX);
-        
+        Task<GPLXViewModel> GetByID(int IDGPLX);
     }
 }

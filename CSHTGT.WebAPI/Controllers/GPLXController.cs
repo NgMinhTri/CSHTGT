@@ -53,6 +53,11 @@ namespace CSHTGT.WebAPI.Controllers
                 return BadRequest();
             return Ok();
         }
-
+        [HttpGet("idgplx")]
+        public async Task<IActionResult> GetByID(int idgplx)
+        {
+            var result = await _gplxService.GetByID(idgplx);
+            return Ok(result);
+        }
     }
 }

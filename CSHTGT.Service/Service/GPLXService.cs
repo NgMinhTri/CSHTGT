@@ -84,5 +84,26 @@ namespace CSHTGT.Service.Service
                 MaDonVi = x.g.MaDonVi
             }).ToListAsync();
         }
+
+        public async Task<GPLXViewModel> GetByID(int IDGPLX)
+        {
+            var query = from g in _context.GPLXes
+                        join n in _context.NguoiThamGiaGiaoThongs on g.MaNgTGGiaoThong equals n.ID
+                        where g.ID == IDGPLX
+                        select new { g, n};
+            return await query.Select(x => new GPLXViewModel()
+            {
+                ID = x.g.ID,
+                HoTen = x.n.HoTen,
+                DiaChi = x.n.DiaChi,
+                CMND = x.n.CMND,
+                Hang = x.g.Hang,
+                NgayTao = x.g.NgayTao,
+                NgayHetHan = x.g.NgayHetHan,
+                SoGPLX = x.g.SoGPLX,
+                TrangThai = x.g.TrangThai,
+                MaDonVi = x.g.MaDonVi
+            }).FirstOrDefaultAsync();
+        }
     }
 }
