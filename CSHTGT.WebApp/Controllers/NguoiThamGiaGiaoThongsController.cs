@@ -26,6 +26,33 @@ namespace CSHTGT.WebApp.Controllers
         {
             return View(await _context.NguoiThamGiaGiaoThongs.ToListAsync());
         }
+        //public async Task<IActionResult> IndexSearch(string cmnd)
+        //{
+        //    var temp = await _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == cmnd).ToListAsync();
+        //    return View("Index",temp);
+        //}
+        public async Task<IActionResult> IndexSearch([Bind("CMND")] string id)
+        {
+            if (Int32.TryParse(id, out int output))
+            {
+                var nguoiThamGiaGiaoThong = await _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == id).ToListAsync();
+                if (nguoiThamGiaGiaoThong == null)
+                {
+                    return NotFound();
+                }
+                return View("Index", nguoiThamGiaGiaoThong);
+            }
+            else
+            {
+                var nguoiThamGiaGiaoThong = await _context.NguoiThamGiaGiaoThongs.Where(x => x.HoTen == id).ToListAsync();
+                if (nguoiThamGiaGiaoThong == null)
+                {
+                    return NotFound();
+                }
+                return View("Index", nguoiThamGiaGiaoThong);
+            }            
+        }
+        
         // GET: NguoiThamGiaGiaoThongs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -35,6 +62,7 @@ namespace CSHTGT.WebApp.Controllers
             }
 
             var nguoiThamGiaGiaoThong = await _context.NguoiThamGiaGiaoThongs
+                .Include(n => n.PhuongTiens)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (nguoiThamGiaGiaoThong == null)
             {
