@@ -27,8 +27,30 @@ namespace CSHTGT.WebAPI.Controllers
         {
             return await _context.NguoiThamGiaGiaoThongs.ToListAsync();
         }
-
-        // GET: api/NguoiThamGiaGiaoThongs/5
+        // GET: api/NguoiThamGiaGiaoThongs/find/id
+        [HttpGet("find/{id}")]
+        public async Task<ActionResult<IEnumerable<NguoiThamGiaGiaoThong>>> GetNguoiThamGiaGiaoThongbyCMNDHoten(string id)
+        {
+            if (Int32.TryParse(id, out int output))
+            {
+                var nguoiThamGiaGiaoThong = await _context.NguoiThamGiaGiaoThongs.Where(x => x.CMND == id).ToListAsync();
+                if (nguoiThamGiaGiaoThong == null)
+                {
+                    return NotFound();
+                }
+                return nguoiThamGiaGiaoThong;
+            }
+            else
+            {
+                var nguoiThamGiaGiaoThong = await _context.NguoiThamGiaGiaoThongs.Where(x => x.HoTen == id).ToListAsync();
+                if (nguoiThamGiaGiaoThong == null)
+                {
+                    return NotFound();
+                }
+                return nguoiThamGiaGiaoThong;
+            }
+        }
+        // GET: api/NguoiThamGiaGiaoThongs/find/id
         [HttpGet("{id}")]
         public async Task<ActionResult<NguoiThamGiaGiaoThong>> GetNguoiThamGiaGiaoThong(int id)
         {
