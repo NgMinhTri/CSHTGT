@@ -8,10 +8,13 @@ namespace CSHTGT.Service.IService
 {
     public interface IPhuongTienService
     {
-        Task<List<PhuongTienViewModel>> GetAll();
-        Task<int> Create(PhuongTienViewModel model);
-        //Task<int> Edit(PhuongTienViewModel model);
-        Task<int> Delete(int ngtggiaothongid);
+        Task<List<PhuongTienGetViewModel>> GetAll();
+    
+        Task<int> CreatePT(PhuongTienCreateViewModel model);
+        Task<int> Edit(PhuongTienUpdateViewModel model);
+        Task<int> Delete(int phuongtienid);
+        Task<PhuongTienGetViewModel> getById(int id);
         
+
     }
 }

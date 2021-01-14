@@ -1,5 +1,6 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,48 @@ namespace CSHTGT.WebApp.Controllers
 {
     public class PhuongTienController : Controller
     {
+        //LẤY RA DANH SÁCH PHƯƠNG TIEENH ĐÃ ĐÁNG KÍ
         public async Task<IActionResult> Index()
         {
-            List<PhuongTienViewModel> listPhuongTien = new List<PhuongTienViewModel>();
+            List<PhuongTienGetViewModel> listPhuongTien = new List<PhuongTienGetViewModel>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:5001/api/PhuongTien"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    listPhuongTien = JsonConvert.DeserializeObject<List<PhuongTienViewModel>>(apiResponse);
+                    listPhuongTien = JsonConvert.DeserializeObject<List<PhuongTienGetViewModel>>(apiResponse);
                 }
             }
             return View(listPhuongTien);
         }
-        public IActionResult AddPhuongTien()
+
+        //PHẦN XÓA DANH SÁCH ĐĂNG KÍ PHƯƠNG TIỆN       
+
+
+
+
+        // PHẦN ĐĂNG KÍ PHƯƠNG TIỆN_ĐĂNG KÍ MỚI GỒM CHỦ XE VÀ PHƯƠNG TIỆN
+        public async Task<IActionResult> AddPhuongTien()
         {
+            List<LoaiPhuongTienViewModel> listLoaiPhuongTien = new List<LoaiPhuongTienViewModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/LoaiPhuongTien"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listLoaiPhuongTien = JsonConvert.DeserializeObject<List<LoaiPhuongTienViewModel>>(apiResponse);
+                }
+            }
+            ViewData["MaLoaiPhuongTien"] = new SelectList(listLoaiPhuongTien, "ID", "TenLoai");
             return View();
         }
+
         [HttpPost]
-        public IActionResult AddPhuongTien(PhuongTienViewModel phuongTienViewModel)
+        public IActionResult AddPhuongTien(PhuongTienCreateViewModel ViewModel)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:5001/");
-            var postTask = client.PostAsJsonAsync<PhuongTienViewModel>("api/phuongtien", phuongTienViewModel);
+            var postTask = client.PostAsJsonAsync<PhuongTienCreateViewModel>("api/PhuongTien", ViewModel);
             postTask.Wait();
             var result = postTask.Result;
             if (result.IsSuccessStatusCode)
@@ -41,15 +61,16 @@ namespace CSHTGT.WebApp.Controllers
                 TempData["result"] = "Đăng kí phương tiện thành công";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Đăng kí phương tiện thất bại");
-            return View(phuongTienViewModel);
+            ModelState.AddModelError("", " đăng kí thất bại");
+            return View(ViewModel);
         }
-        
+
+
         public ActionResult DeletePT(int id)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:5001/api/");             
+                client.BaseAddress = new Uri("https://localhost:5001/api/");
                 var deleteTask = client.DeleteAsync("PhuongTien/" + id);
                 deleteTask.Wait();
 
@@ -58,7 +79,54 @@ namespace CSHTGT.WebApp.Controllers
                 {
                     TempData["result"] = "Đã xóa hồ sơ đăng kí";
                     return RedirectToAction("Index");
-                   
+
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> UpdatePT(int id)
+        {
+            PhuongTienUpdateViewModel phuongtien = new PhuongTienUpdateViewModel();
+            List<LoaiPhuongTienViewModel> listLoaiPhuongTien = new List<LoaiPhuongTienViewModel>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/LoaiPhuongTien"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listLoaiPhuongTien = JsonConvert.DeserializeObject<List<LoaiPhuongTienViewModel>>(apiResponse);
+                }
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/PhuongTien/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    phuongtien = JsonConvert.DeserializeObject<PhuongTienUpdateViewModel>(apiResponse);
+                }
+            }
+            ViewData["MaLoaiPhuongTien"] = new SelectList(listLoaiPhuongTien, "ID", "TenLoai");
+            return View(phuongtien);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdatePT(PhuongTienUpdateViewModel phuongtien)
+        {
+            PhuongTienUpdateViewModel receivedPhuongTien= new PhuongTienUpdateViewModel();
+            using (var httpClient = new HttpClient())
+            {
+                var content = new MultipartFormDataContent();
+                content.Add(new StringContent(phuongtien.TenPT), "TenPT");
+                content.Add(new StringContent(phuongtien.BienSo), "BienSo");
+                content.Add(new StringContent(phuongtien.SoChoNgoi.ToString()), "SoChoNgoi");
+                content.Add(new StringContent(phuongtien.SoKhung), "SoKhung");
+                content.Add(new StringContent(phuongtien.NhanHieu), "NhanHieu");
+                content.Add(new StringContent(phuongtien.SoMay), "SoMay");
+                content.Add(new StringContent(phuongtien.TaiTrong), "SoKhung");
+                content.Add(new StringContent(phuongtien.TrangThai), "TrangThai");
+               
+                content.Add(new StringContent(phuongtien.MaLoaiPhuongTien.ToString()), "MaLoaiPhuongTien");
+                using (var response = await httpClient.PutAsync("https://localhost:5001/api/PhuongTien", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    ViewBag.Result = "Success";
+                    receivedPhuongTien = JsonConvert.DeserializeObject<PhuongTienUpdateViewModel>(apiResponse);
                 }
             }
             return RedirectToAction("Index");
