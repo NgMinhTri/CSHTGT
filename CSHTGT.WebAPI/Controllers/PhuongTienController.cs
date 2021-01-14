@@ -26,34 +26,20 @@ namespace CSHTGT.WebAPI.Controllers
             var phuongtien = await _phuongTienService.GetAll();
             return Ok(phuongtien);
         }
-        //[HttpGet("id")]
-        //public async Task<IActionResult> getPhuongTienById(int id)
-        //{
-        //    var phuongtien = await _phuongTienService.GetById(id);
-        //    return Ok(phuongtien);
-        //}
-        //tạo mới hồ sơ đăng kí MỚI bao gồm NTGGT VÀ PHƯƠNG TIỆN
+        
+       
         [HttpPost]
-        public async Task<IActionResult> CreateNTGGT_PT([FromBody] PhuongTien_NTGGTViewModel model)
+        public async Task<IActionResult> Create([FromBody]PhuongTienCreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _phuongTienService.Create_NTGGT_PT(model);
+            var result = await _phuongTienService.CreatePT(model);
             return Ok(result);
         }
-        //TẠO HỒ SƠ ĐĂNG KÍ KHI ĐÃ CÓ NTGGT, CHỈ CẦN NHẬP PHƯƠNG TIỆN
-        //[HttpPost("phuongtien")]
-        //[Authorize]
-        //public async Task<IActionResult> CreatePT([FromBody]PhuongTienViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var result = await _phuongTienService.CreatePT(model);
-        //    return Ok(result);
-        //}
+        
 
-        [HttpDelete("phuongtienid")]
-        public async Task<IActionResult> DeletePhuongTien(int MaPT)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int MaPT)
         {
             var result = await _phuongTienService.Delete(MaPT);
             if (result == 0)

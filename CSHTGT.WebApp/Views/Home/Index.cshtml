@@ -6,126 +6,121 @@
     <h1 class="mt-4">Trang chủ</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
-        
+        @*<li class="breadcrumb-item"><a href="#">Các chức năng dành cho người quản trị</a></li>*@
     </ol>
-    <div class="row">
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Primary Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+  
+    <h3>Môn học: Phát triển ứng dụng Hệ thống thông tin Hiện đại</h3>
+    <div  class="row">                              
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Thông tin nhóm
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Họ Tên</th>
+                                <th>MSSV</th>
+                                <th>Email</th>
+                                
+                            </tr>
+                        </thead>
+                            
+                        <tbody>
+                            <tr>
+                                <td>Nguyễn Minh Trí</td>
+                                <td>1712833</td>
+                                <td>1712833@student.hcmus.edu.vn</td>
+                            </tr>
+                            <tr>
+                                <td>Hồng Quang Tú</td>
+                                <td>1712855</td>
+                                <td>1712855@student.hcmus.edu.vn</td>
+                            </tr>
+                            <tr>
+                                <td>Châu Nguyễn Khánh Trình</td>
+                                <td>1712839</td>
+                                <td>1712839@student.hcmus.edu.vn</td>
+                            </tr>
+                            <tr>
+                                <td>Tô Hoàng Trung</td>
+                                <td>1712849</td>
+                                <td>1712849@student.hcmus.edu.vn</td>
+                            </tr>
+                            <tr>
+                                <td>Phạm Văn Bảo</td>
+                                <td>1712287</td>
+                                <td>1712287@student.hcmus.edu.vn</td>
+                            </tr>
+                            <tr>
+                                <td>Lê Hồng Công</td>
+                                <td>1712305</td>
+                                <td>1712305@student.hcmus.edu.vn</td>
+                            </tr>
+                            <tr>
+                                <td>Nguyễn Nhân</td>
+                                <td>1712629</td>
+                                <td>1712629@student.hcmus.edu.vn</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-warning text-white mb-4">
-                <div class="card-body">Warning Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-success text-white mb-4">
-                <div class="card-body">Success Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-danger text-white mb-4">
-                <div class="card-body">Danger Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area mr-1"></i>
-                    Area Chart Example
-                </div>
-                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar mr-1"></i>
-                    Bar Chart Example
-                </div>
-                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table mr-1"></i>
-            DataTable Example
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                        </tr>
-                        
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+       
+    <div id="layoutError">
+        <div id="layoutError_content">
+            <main>
+                <div class="container">
+                    <h3>Danh sách chức năng hệ thống</h3>
+                    <div class="row justify-content-center">
 
+                        <div class="col-lg-4">
+                            <div class="text mt-4">
+                                <h1 class="display-2">1</h1>
+                                <p class="lead"><a href="/PhuongTien/Index"></a>Phương tiện</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text mt-4">
+                                <h1 class="display-2">2</h1>
+                                <p class="lead">Người tham gia giao thông</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text mt-4">
+                                <h1 class="display-2">3</h1>
+                                <p class="lead">Thống kế, báo cáo</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text mt-4">
+                                <h1 class="display-2">4</h1>
+                                <p class="lead">Giấy phép lái xe</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text mt-4">
+                                <h1 class="display-2">5</h1>
+                                <p class="lead">Cán bộ, CSGT</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text mt-4">
+                                <h1 class="display-2">6</h1>
+                                <p class="lead">Biên bản xử phạt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+
+    </div>
+
+</div>
+</div>
 

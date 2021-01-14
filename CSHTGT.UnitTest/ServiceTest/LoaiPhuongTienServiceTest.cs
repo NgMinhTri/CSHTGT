@@ -2,6 +2,7 @@
 using CSHTGT.Service.IService;
 using CSHTGT.Service.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,12 +12,14 @@ namespace CSHTGT.UnitTest.ServiceTest
     [TestClass]
     class LoaiPhuongTienServiceTest
     {
-        private ILoaiPhuongTienService _loaiPhuongTienService;
+        private Mock<ILoaiPhuongTienService> _mockloaiPhuongTienService;
         private List<LoaiPhuongTien> listLoaiPhuongTien;
+        
         [TestInitialize]
         public void Initialize()
         {
-            //_loaiPhuongTienService = new LoaiPhuongTienService()
+            _mockloaiPhuongTienService = new Mock<ILoaiPhuongTienService>();
+            
 
         }
         [TestMethod]

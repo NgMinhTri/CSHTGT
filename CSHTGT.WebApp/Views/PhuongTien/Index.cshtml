@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CSHTGT.ViewModels.PhuongTien_NTGGTViewModel>
+﻿@model IEnumerable<CSHTGT.ViewModels.PhuongTienGetViewModel>
 
 @{
     ViewData["Title"] = "Danh sách phương tiện";
@@ -19,10 +19,10 @@
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
-                <tr>                                        
+                <tr>
                     <th>
-                        UserName
-                    </th>                    
+                        CMND chủ xe
+                    </th>
                     <th>
                         Tên phương tiện
                     </th>
@@ -42,6 +42,12 @@
                         Số máy
                     </th>
                     <th>
+                        Tải trọng
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th>
                         Loại phương tiện
                     </th>
 
@@ -51,39 +57,47 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>                                                                                             
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UserName)
-                        </td>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenPT)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BienSo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NhanHieu)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SoChoNgoi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SoKhung)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SoMay)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CMND)
+                    </td>
 
-                        </td>
-                        <td>
-                            @Html.ActionLink("Sửa", "UpdatePT", new { id = item.MaPT })
-                            @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenPT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BienSo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanHieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoChoNgoi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoKhung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoMay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaiTrong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLoaiPhuongTien)
 
-                        </td>
-                    </tr>
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Sửa", "UpdatePT", new { id = item.MaPT })
+
+                        @Html.ActionLink("Xóa", "DeletePT", new { id = item.MaPT })
+
+                    </td>
+                </tr>
 
                 }
             </tbody>

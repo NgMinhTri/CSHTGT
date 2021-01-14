@@ -6,8 +6,10 @@ using System.Text;
 
 namespace CSHTGT.ViewModels
 {
-    public class PhuongTienViewModel
+    public class PhuongTienGetViewModel
     {
+        public int MaPT { get; set; }
+        public string CMND { get; set; }
         // thuộc tính gồm 1 bảng               
         public string TenPT { get; set; }               
         public string BienSo { get; set; }       
@@ -16,8 +18,9 @@ namespace CSHTGT.ViewModels
         public string SoKhung { get; set; }       
         public string SoMay { get; set; }
         public string TaiTrong { get; set; }
-        //khóa ngoại       
+        public string TrangThai { get; set; }
         public int MaLoaiPhuongTien { get; set; }
-        public int MaNTGGT { get; set; }
+        //khóa ngoại       
+
     }
 }

@@ -32,7 +32,7 @@ namespace CSHTGT.WebApp
             }
 #endif
 
-            services.AddTransient<IValidator<PhuongTienViewModel>, PhuongTienValidator>();
+            //services.AddTransient<IValidator<PhuongTienGetViewModel>, PhuongTienValidator>();
 
 
             services.AddControllersWithViews();

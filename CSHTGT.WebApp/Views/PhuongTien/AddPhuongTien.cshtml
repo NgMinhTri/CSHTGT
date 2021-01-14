@@ -1,4 +1,4 @@
-﻿@model CSHTGT.ViewModels.PhuongTienViewModel
+﻿@model CSHTGT.ViewModels.PhuongTienCreateViewModel
 
 @{
     ViewData["Title"] = "AddPhuongTien";
@@ -21,9 +21,9 @@
                 </div>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="MaNTGGT" class="control-label"></label>
-                    <input asp-for="MaNTGGT" class="form-control" />
-                    <span asp-validation-for="MaNTGGT" class="text-danger"></span>
+                    <label asp-for="CMND" class="control-label">Nhập CMND chủ sở hữu phương tiện</label>
+                    <input asp-for="CMND" class="form-control" />
+                    <span asp-validation-for="CMND" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -60,6 +60,11 @@
                     <label asp-for="TaiTrong" class="control-label">Tải trọng</label>
                     <input asp-for="TaiTrong" class="form-control" />
                     <span asp-validation-for="TaiTrong" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TrangThai" class="control-label">Trạng thái</label>
+                    <input asp-for="TrangThai" class="form-control" />
+                    <span asp-validation-for="TrangThai" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="MaLoaiPhuongTien" class="control-label">Loại phương tiện</label>

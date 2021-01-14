@@ -34,7 +34,7 @@ namespace CSHTGT.WebAPI
             services.AddTransient<IPhuongTienService, PhuongTienService>();
 
             //Validation cho ViewModel
-            services.AddTransient<IValidator<PhuongTienViewModel>, PhuongTienValidator>();
+           // services.AddTransient<IValidator<PhuongTienGetViewModel>, PhuongTienValidator>();
 
 
             services.AddControllersWithViews();
