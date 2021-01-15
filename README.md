@@ -6,3 +6,5 @@ HTMT/CSS, Javascript
 https://github.com/NgMinhTri/CSHTGT
 # How to configure 
 # How to contribute
+
+#Thầy chạy project WebAPi ở cổng chạy CSHTGT.WEbAPI, và project WEbApp ở cổng CSHTGT.WebApp ạ
