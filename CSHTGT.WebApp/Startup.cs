@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using CSHTGT.Data.Context;
+using FluentValidation.AspNetCore;
+using CSHTGT.ViewModels;
 
 namespace CSHTGT.WebApp
 {
@@ -31,6 +33,8 @@ namespace CSHTGT.WebApp
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<PhuongTienCreateValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
