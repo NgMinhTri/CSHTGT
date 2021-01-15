@@ -29,6 +29,8 @@ namespace CSHTGT.WebAPI
             //declare DI
             services.AddTransient<ILoaiPhuongTienService, LoaiPhuongTienService>();
             services.AddTransient<IPhuongTienService, PhuongTienService>();
+            services.AddTransient<IGPLXService, GPLXService>();
+            services.AddTransient<IDonViService, DonViService>();
             services.AddControllersWithViews();
             services.AddControllers();
             services.AddSwaggerGen(c =>

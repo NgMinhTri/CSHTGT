@@ -22,6 +22,13 @@ namespace CSHTGT.Data.Extension
             //    new DoanhNghiepVanTai() { ID = 4, TenDN = "Công ty Vận Tải Mạnh Cường Quân", DiaChi = "Võ Văn Kiệt, Quận 5", TinhTrang = "Đang làm việc" },
             //    new DoanhNghiepVanTai() { ID = 5, TenDN = "Công ty vận tải Trịnh Nghiên", DiaChi = "Landmark 81, Bình Thạnh", TinhTrang = "Đang làm việc" }
             //    );
+            modelBuilder.Entity<DonVi>().HasData(
+                new DonVi() { MaDonVi = 1, TenDonVi = "CSGT TP.Hồ Chí Minh", DiaDiem = "TP.Hồ Chí Minh", NhiemVu = "Quản lý giao thông tại địa phương" },
+                new DonVi() { MaDonVi = 2, TenDonVi = "CSGT tỉnh Quảng Nam", DiaDiem = "Quảng Nam", NhiemVu = "Quản lý giao thông tại địa phương" },
+                new DonVi() { MaDonVi = 3, TenDonVi = "CSGT tỉnh Quảng Ngãi", DiaDiem = "Quảng Ngãi", NhiemVu = "Quản lý giao thông tại địa phương" },
+                new DonVi() { MaDonVi = 4, TenDonVi = "CSGT tỉnh Long An", DiaDiem = "Long An", NhiemVu = "Quản lý giao thông tại địa phương" },
+                new DonVi() { MaDonVi = 5, TenDonVi = "CSGT tỉnh Bình Định", DiaDiem = "Bình Định", NhiemVu = "Quản lý giao thông tại địa phương" }
+                );
         }
     }
 }

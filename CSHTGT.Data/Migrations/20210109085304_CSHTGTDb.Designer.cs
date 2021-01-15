@@ -4,14 +4,16 @@ using CSHTGT.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSHTGT.Data.Migrations
 {
     [DbContext(typeof(CSHTGTDbContext))]
-    partial class CSHTGTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210109085304_CSHTGTDb")]
+    partial class CSHTGTDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,43 +142,6 @@ namespace CSHTGT.Data.Migrations
                     b.HasKey("MaDonVi");
 
                     b.ToTable("DonVi");
-
-                    b.HasData(
-                        new
-                        {
-                            MaDonVi = 1,
-                            DiaDiem = "TP.Hồ Chí Minh",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT TP.Hồ Chí Minh"
-                        },
-                        new
-                        {
-                            MaDonVi = 2,
-                            DiaDiem = "Quảng Nam",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Quảng Nam"
-                        },
-                        new
-                        {
-                            MaDonVi = 3,
-                            DiaDiem = "Quảng Ngãi",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Quảng Ngãi"
-                        },
-                        new
-                        {
-                            MaDonVi = 4,
-                            DiaDiem = "Long An",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Long An"
-                        },
-                        new
-                        {
-                            MaDonVi = 5,
-                            DiaDiem = "Bình Định",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Bình Định"
-                        });
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.File", b =>
@@ -323,22 +288,18 @@ namespace CSHTGT.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("CMND")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("DiaChi")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("HoTen")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -346,7 +307,6 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PassWord")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -355,12 +315,10 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("SDT")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -402,9 +360,12 @@ namespace CSHTGT.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("BienSo")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LoaiDangKy")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("MaLoaiPT")
                         .HasColumnType("int");
@@ -413,7 +374,6 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NhanHieu")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -433,7 +393,6 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("TenPT")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 

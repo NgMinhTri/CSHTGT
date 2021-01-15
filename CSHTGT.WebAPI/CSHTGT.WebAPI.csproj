@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CSHTGT.Data\CSHTGT.Data.csproj" />
     <ProjectReference Include="..\CSHTGT.Service\CSHTGT.Service.csproj" />
+    <ProjectReference Include="..\CSHTGT.ViewModels\CSHTGT.ViewModels.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
