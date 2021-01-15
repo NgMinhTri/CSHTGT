@@ -17,10 +17,15 @@
         <div class="col-md-4">
             <form asp-action="AddPhieuDangKyThuTuc">
                 <div class="form-group">
-                    <a class="btn btn-primary" asp-action="Index" asp-controller="PhuongTien">Trở về danh sách đăng kí</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="PhieuDangKyThuTuc">Trở về danh sách đăng kí</a>
                 </div>
                 <h5>Nhập thông tin phương tiện</h5>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    <label asp-for="MaNgTGGiaoThong" class="control-label">Mã Người Tham Gia Giao Thông</label>
+                    <input asp-for="MaNgTGGiaoThong" class="form-control" placeholder="1"/>
+                    <span asp-validation-for="MaNgTGGiaoThong" class="text-danger"></span>
+                </div>
                 <div>
                     <label asp-for="TenPT" class="control-label">Tên phương tiện(*)</label>
                     <input asp-for="TenPT" class="form-control" />

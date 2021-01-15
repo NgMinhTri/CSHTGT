@@ -20,9 +20,7 @@ namespace CSHTGT.Service.Service
         }
         public async Task<List<PhieuDangKyThuTucViewModel>> GetAll()
         {
-            var query = from n in _context.NguoiThamGiaGiaoThongs
-                        join p in _context.PhieuDangKyThuTucs on n.ID equals p.MaNgTGGiaoThong
-                        select new { n, p };
+            var query = from p in _context.PhieuDangKyThuTucs select new { p };
             return await query.Select(x => new PhieuDangKyThuTucViewModel()
             {
                 MaPhieu = x.p.MaPhieu,
@@ -32,7 +30,6 @@ namespace CSHTGT.Service.Service
                 SoChoNgoi = x.p.SoChoNgoi,
                 SoKhung = x.p.SoKhung,
                 SoMay = x.p.SoMay,
-                MaNgTGGiaoThong = x.n.ID,
                 LoaiDangKy = x.p.LoaiDangKy,
                 XetDuyet = x.p.XetDuyet,
                 NgayDangKy = x.p.NgayDangKy,
