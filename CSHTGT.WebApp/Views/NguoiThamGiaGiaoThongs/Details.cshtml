@@ -4,69 +4,76 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class=" container-fluid">
+    <h1 class=" mt-4">Thông tin chi tiết</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
+        <li class="breadcrumb-item ">Người tham gia giao thông</li>
+        <li class="breadcrumb-item ">Chi tiết</li>
+    </ol>
+    <div>
 
-<div>
-    <h4>NguoiThamGiaGiaoThong</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CMND)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CMND)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.QueQuan)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.QueQuan)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PassWord)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PassWord)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Họ tên
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.HoTen)
+            </dd>
+            <dt class="col-sm-2">
+                Địa chỉ
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DiaChi)
+            </dd>
+            <dt class="col-sm-2">
+                CMND
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CMND)
+            </dd>
+            <dt class="col-sm-2">
+                Email
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                Ngày sinh
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NgaySinh)
+            </dd>
+            <dt class="col-sm-2">
+                Quê quán
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.QueQuan)
+            </dd>
+            <dt class="col-sm-2">
+                Số điện thoại
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+            <dt class="col-sm-2">
+                UserName
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                Password
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PassWord)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ID">Sửa</a> |
+        <a asp-action="Index">Về danh sách</a>
+    </div>
 </div>

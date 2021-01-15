@@ -17,22 +17,22 @@
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
+            @*<div class="input-group">
                 <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                 </div>
-            </div>
+            </div>*@
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Activity Log</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="#">Cài đặt</a>
+                    @*<a class="dropdown-item" href="#">Activity Log</a>
+                    <div class="dropdown-divider"></div>*@
+                    <a class="dropdown-item" href="/Login">Đăng xuất</a>
                 </div>
             </li>
         </ul>
@@ -47,23 +47,33 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Trang chủ
                         </a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <div class="sb-sidenav-menu-heading">Chức năng</div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            QL phương tiện
+                            Quản lý phương tiện
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/PhuongTien">DS phương tiện</a>
-                                <a class="nav-link" href="/PhuongTien/AddPhuongTien">Đăng kí, thu hồi</a>
-                                <a class="nav-link" href="/PhuongTien/UpdatePT">Update</a>
-
+                                <a class="nav-link" href="/PhuongTien">Danh sách phương tiện</a>
+                                <a class="nav-link" href="/PhuongTien/AddPhuongTien">Đăng kí phương tiện</a>
+                                <a class="nav-link" href="/PhuongTien/UpDatePT">Update</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts23" aria-expanded="false" aria-controls="collapseLayouts23">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Quản lý cán bộ
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts23" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/CanBo">Danh sách Cán bộ</a>
+                                <a class="nav-link" href="/CanBo/AddCanBo">Thêm thông tin</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="/NguoiThamGiaGiaoThongs" data-toggle="collapse" data-target="#collapseLayouts2287" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            QL Người tham gia giao thông
+                            Quản lý Người tham gia giao thông
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts2287" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -71,6 +81,7 @@
                                 <a class="nav-link" href="/NguoiThamGiaGiaoThongs">DS Người tham gia giao thông</a>
                             </nav>
                         </div>
+
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Quản lý GPLX
@@ -106,52 +117,55 @@
                                 <a class="nav-link" href="/files/create">Thêm biểm mẫu</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
+
+
+
+                        @*<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+            Pages
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+        </a>*@
+                        @*<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                    Authentication
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="register.html">Register</a>
+                        <a class="nav-link" href="password.html">Forgot Password</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                    Error
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="401.html">401 Page</a>
+                        <a class="nav-link" href="404.html">404 Page</a>
+                        <a class="nav-link" href="500.html">500 Page</a>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+        <div class="sb-sidenav-menu-heading">Addons</div>*@
+                        @*<a class="nav-link" href="charts.html">
+            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+            Charts
+        </a>*@
+                        @*<a class="nav-link" href="tables.html">
+            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+            Tables
+        </a>*@
                     </div>
                 </div>
-                <div class="sb-sidenav-footer">
+                @*<div class="sb-sidenav-footer">
                     <div class="small">Đăng nhập bằng:</div>
                     Phát triển UD HTTT Hiện đại
-                </div>
+                </div>*@
             </nav>
         </div>
         <div id="layoutSidenav_content">

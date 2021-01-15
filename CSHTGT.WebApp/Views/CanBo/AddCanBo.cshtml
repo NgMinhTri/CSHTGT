@@ -5,68 +5,73 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Thêm Cán bộ</h1>
+<div class="container-fluid">
+    <h1 class=" mt-4">Thêm Cán bộ</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
+        <li class="breadcrumb-item ">Cán bộ</li>
+        <li class="breadcrumb-item ">Tạo mới</li>
+    </ol>
+  
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddCanBo">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MaDonVi" class="control-label">Đơn Vị</label>
+                    <select name="MaDonVi" asp-items="@ViewBag.MaDonVi" class="form-control">
+                        <option>--Chọn đơn vị công tác--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HoTen" class="control-label">Họ Tên</label>
+                    <input asp-for="HoTen" class="form-control" />
+                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CMND" class="control-label">CMND</label>
+                    <input asp-for="CMND" class="form-control" />
+                    <span asp-validation-for="CMND" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DiaChi" class="control-label">Địa chỉ</label>
+                    <input asp-for="DiaChi" class="form-control" />
+                    <span asp-validation-for="DiaChi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NgaySinh" class="control-label">Ngày sinh</label>
+                    <input asp-for="NgaySinh" class="form-control" />
+                    <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SDT" class="control-label">SDT</label>
+                    <input asp-for="SDT" class="form-control" />
+                    <span asp-validation-for="SDT" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label">Username</label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Password</label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
 
-<h4>Thêm cán bộ vào hệ thống</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddCanBo">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MaDonVi" class="control-label">Đơn Vị</label>
-                <select name="MaDonVi" asp-items="@ViewBag.MaDonVi" class="form-control">
-                    <option>--Chọn đơn vị công tác--</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="HoTen" class="control-label">Họ Tên</label>
-                <input asp-for="HoTen" class="form-control" />
-                <span asp-validation-for="HoTen" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CMND" class="control-label">CMND</label>
-                <input asp-for="CMND" class="form-control" />
-                <span asp-validation-for="CMND" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DiaChi" class="control-label">Địa chỉ</label>
-                <input asp-for="DiaChi" class="form-control" />
-                <span asp-validation-for="DiaChi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label">Email</label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NgaySinh" class="control-label">Ngày sinh</label>
-                <input asp-for="NgaySinh" class="form-control" />
-                <span asp-validation-for="NgaySinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SDT" class="control-label">SDT</label>
-                <input asp-for="SDT" class="form-control" />
-                <span asp-validation-for="SDT" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label">Username</label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label">Password</label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div>
+        <a asp-action="Index">Danh sách cán bộ</a>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Danh sách cán bộ</a>
-</div>
-

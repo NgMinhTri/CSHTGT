@@ -9,61 +9,61 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MaNgTGGiaoThong" class="control-label"></label>
+                <label asp-for="MaNgTGGiaoThong" class="control-label">Mã người tham gia giao thông</label>
                 <select asp-for="MaNgTGGiaoThong" class="form-control" asp-items="ViewBag.MaNgTGGiaoThong"></select>
             </div>
             <div class="form-group">
-                <label asp-for="MaHinhThucXuPhat" class="control-label"></label>
+                <label asp-for="MaHinhThucXuPhat" class="control-label">Mã hình thức xử phạt</label>
                 <select asp-for="MaHinhThucXuPhat" class="form-control" asp-items="ViewBag.MaHinhThucXuPhat"></select>
             </div>
             <div class="form-group">
-                <label asp-for="MaCanBo" class="control-label"></label>
+                <label asp-for="MaCanBo" class="control-label">Mã cán bộ</label>
                 <select asp-for="MaCanBo" class="form-control" asp-items="ViewBag.MaCanBo"></select>
             </div>
             <div class="form-group">
-                <label asp-for="NgayViPham" class="control-label"></label>
+                <label asp-for="NgayViPham" class="control-label">Ngày vi phạm</label>
                 <input asp-for="NgayViPham" class="form-control" />
                 <span asp-validation-for="NgayViPham" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NgayLap" class="control-label"></label>
+                <label asp-for="NgayLap" class="control-label">Ngày lập</label>
                 <input asp-for="NgayLap" class="form-control" />
                 <span asp-validation-for="NgayLap" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HanNopPhat" class="control-label"></label>
+                <label asp-for="HanNopPhat" class="control-label">Hạn nộp phạt</label>
                 <input asp-for="HanNopPhat" class="form-control" />
                 <span asp-validation-for="HanNopPhat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LoiViPham" class="control-label"></label>
+                <label asp-for="LoiViPham" class="control-label">Lỗi vi phạm</label>
                 <input asp-for="LoiViPham" class="form-control" />
                 <span asp-validation-for="LoiViPham" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoQuyetDinh" class="control-label"></label>
+                <label asp-for="SoQuyetDinh" class="control-label">Số quyết định</label>
                 <input asp-for="SoQuyetDinh" class="form-control" />
                 <span asp-validation-for="SoQuyetDinh" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoTienPhat" class="control-label"></label>
+                <label asp-for="SoTienPhat" class="control-label">Số tiền phạt</label>
                 <input asp-for="SoTienPhat" class="form-control" />
                 <span asp-validation-for="SoTienPhat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TinhTrangNopPhat" class="control-label"></label>
+                <label asp-for="TinhTrangNopPhat" class="control-label">Tình trạng nộp phạt</label>
                 <input asp-for="TinhTrangNopPhat" class="form-control" />
                 <span asp-validation-for="TinhTrangNopPhat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" style="margin: 0 auto; display: block" />
+                <input type="submit" value="Tạo mới" class="btn btn-primary" style="margin: 0 auto; display: block" />
             </div>
         </form>
     </div>
 </div>
 
 <div style=" display: flex; justify-content: center;">
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Về danh sách</a>
 </div>
 
 @*@section Scripts {
