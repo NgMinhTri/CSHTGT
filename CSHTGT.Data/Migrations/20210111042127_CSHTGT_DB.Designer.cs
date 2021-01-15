@@ -4,14 +4,16 @@ using CSHTGT.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSHTGT.Data.Migrations
 {
     [DbContext(typeof(CSHTGTDbContext))]
-    partial class CSHTGTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210111042127_CSHTGT_DB")]
+    partial class CSHTGT_DB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,43 +142,6 @@ namespace CSHTGT.Data.Migrations
                     b.HasKey("MaDonVi");
 
                     b.ToTable("DonVi");
-
-                    b.HasData(
-                        new
-                        {
-                            MaDonVi = 1,
-                            DiaDiem = "TP.Hồ Chí Minh",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT TP.Hồ Chí Minh"
-                        },
-                        new
-                        {
-                            MaDonVi = 2,
-                            DiaDiem = "Quảng Nam",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Quảng Nam"
-                        },
-                        new
-                        {
-                            MaDonVi = 3,
-                            DiaDiem = "Quảng Ngãi",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Quảng Ngãi"
-                        },
-                        new
-                        {
-                            MaDonVi = 4,
-                            DiaDiem = "Long An",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Long An"
-                        },
-                        new
-                        {
-                            MaDonVi = 5,
-                            DiaDiem = "Bình Định",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Bình Định"
-                        });
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.File", b =>
@@ -281,6 +246,38 @@ namespace CSHTGT.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("LoaiPhuongTien");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            MoTa = "Phương tiện giao thông cơ giới đường bộ bao gồm xe ô tô; máy kéo; rơ moóc hoặc sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo; xe máy (2 bánh, 3 bánh); xe đạp điện và các loại xe tương tự khác",
+                            TenLoai = "Xe cơ giới"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            MoTa = "Phương tiện giao thông thô sơ đường bộ bao gồm xe đạp, xe xích lô, xe lăn, xe kéo và các loại xe tương tự khác.",
+                            TenLoai = "Xe thô sơ"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            MoTa = "Tàu Container là phương tiện vận tải biển có cấu trúc đặc biệt, để chứa một lượng lớn hàng hóa được xếp trong các loại Container khác nhau.",
+                            TenLoai = "Tàu Container"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            MoTa = "là một chiếc tàu thủy (hoạt động trên sông hoặc ven biển) chuyên chở hành khách cùng phương tiện của họ trên những tuyến đường và lịch trình cố định.",
+                            TenLoai = "Phà"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            MoTa = "là một thuyền có đáy bằng, một phương tiện dùng để chở các hàng hóa nặng di chuyển chủ yếu ở các con kênh hoặc các con sông.",
+                            TenLoai = "Sà lan"
+                        });
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.NguoiThamGiaGiaoThong", b =>
@@ -291,18 +288,22 @@ namespace CSHTGT.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("CMND")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("DiaChi")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("HoTen")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -310,6 +311,7 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PassWord")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -318,10 +320,12 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("SDT")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 

@@ -4,14 +4,16 @@ using CSHTGT.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSHTGT.Data.Migrations
 {
     [DbContext(typeof(CSHTGTDbContext))]
-    partial class CSHTGTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210113141834_updateDV")]
+    partial class updateDV
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,43 +142,6 @@ namespace CSHTGT.Data.Migrations
                     b.HasKey("MaDonVi");
 
                     b.ToTable("DonVi");
-
-                    b.HasData(
-                        new
-                        {
-                            MaDonVi = 1,
-                            DiaDiem = "TP.Hồ Chí Minh",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT TP.Hồ Chí Minh"
-                        },
-                        new
-                        {
-                            MaDonVi = 2,
-                            DiaDiem = "Quảng Nam",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Quảng Nam"
-                        },
-                        new
-                        {
-                            MaDonVi = 3,
-                            DiaDiem = "Quảng Ngãi",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Quảng Ngãi"
-                        },
-                        new
-                        {
-                            MaDonVi = 4,
-                            DiaDiem = "Long An",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Long An"
-                        },
-                        new
-                        {
-                            MaDonVi = 5,
-                            DiaDiem = "Bình Định",
-                            NhiemVu = "Quản lý giao thông tại địa phương",
-                            TenDonVi = "CSGT tỉnh Bình Định"
-                        });
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.File", b =>

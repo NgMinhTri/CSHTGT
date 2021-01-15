@@ -1,4 +1,4 @@
-using CSHTGT.Data.Context;
+ï»¿using CSHTGT.Data.Context;
 using CSHTGT.Service.IService;
 using CSHTGT.Service.Service;
 using Microsoft.AspNetCore.Builder;
@@ -29,13 +29,14 @@ namespace CSHTGT.WebAPI
             //declare DI
             services.AddTransient<ILoaiPhuongTienService, LoaiPhuongTienService>();
             services.AddTransient<IPhuongTienService, PhuongTienService>();
+            services.AddTransient<ICanBoService, CanBoService>();
             services.AddTransient<IGPLXService, GPLXService>();
             services.AddTransient<IDonViService, DonViService>();
             services.AddControllersWithViews();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test các API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test cï¿½c API", Version = "v1" });
             });
         }
 
