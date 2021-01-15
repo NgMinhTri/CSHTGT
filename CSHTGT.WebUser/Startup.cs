@@ -1,15 +1,14 @@
-using CSHTGT.Data.Context;
-using CSHTGT.Service.IService;
-using CSHTGT.Service.Service;
+using CSHTGT.ViewModels;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using System;
 
-namespace CSHTGT.WebAPI
+namespace CSHTGT.WebUser
 {
     public class Startup
     {
@@ -23,18 +22,21 @@ namespace CSHTGT.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CSHTGTDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("CSHTGTDb")));
-
-            //declare DI
-            services.AddTransient<ILoaiPhuongTienService, LoaiPhuongTienService>();
-            services.AddTransient<IPhuongTienService, PhuongTienService>();
-            services.AddTransient<IPhieuDangKyThuTucService, PhieuDangKyThuTucService>();
             services.AddControllersWithViews();
-            services.AddSwaggerGen(c =>
+            IMvcBuilder builder = services.AddRazorPages();
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+#if DEBUG
+            if (environment == Environments.Development)
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test các API", Version = "v1" });
-            });
+                builder.AddRazorRuntimeCompilation();
+            }
+#endif
+            services.AddTransient<IValidator<PhuongTienViewModel>, PhuongTienValidator>();
+
+
+            services.AddControllersWithViews();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<PhuongTienValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,17 +58,12 @@ namespace CSHTGT.WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

@@ -21,8 +21,6 @@ namespace CSHTGT.Data.Models
 
         [MaxLength(250)]
         public string NhiemVu { get; set; }
-
-        public List<PhieuDangKyThuTuc> PhieuDangKyThuTucs { get; set; }
         public List<GPLX> GPLXes { get; set; }
         public List<CanBo> CanBos { get; set; }
        // public List<PhuongTien> PhuongTien { get; set; }

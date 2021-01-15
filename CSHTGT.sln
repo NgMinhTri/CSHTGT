@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSHTGT.WebApp", "CSHTGT.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSHTGT.UnitTest", "CSHTGT.UnitTest\CSHTGT.UnitTest.csproj", "{E33730F5-7C57-4C16-992A-C9DFBBB16ADC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHTGT.WebUser", "CSHTGT.WebUser\CSHTGT.WebUser.csproj", "{9B7ABEEC-3946-4680-ACD4-18DA5F28D266}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{E33730F5-7C57-4C16-992A-C9DFBBB16ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33730F5-7C57-4C16-992A-C9DFBBB16ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33730F5-7C57-4C16-992A-C9DFBBB16ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B7ABEEC-3946-4680-ACD4-18DA5F28D266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B7ABEEC-3946-4680-ACD4-18DA5F28D266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B7ABEEC-3946-4680-ACD4-18DA5F28D266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B7ABEEC-3946-4680-ACD4-18DA5F28D266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

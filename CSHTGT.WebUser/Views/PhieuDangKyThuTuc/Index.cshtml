@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CSHTGT.ViewModels.PhieuDangKyThuTuc>
+
+@{ ViewData["Title"] = "Danh sách lịch hẹn đã đặt";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách lịch hẹn</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
+        <li class="breadcrumb-item">Danh sách lịch hẹn</li>
+    </ol>
+    <p>
+        <div class="form-group">
+            <a class="btn btn-primary" asp-action="AddPhieuDangKyThuTuc" asp-controller="PhieuDangKyThuTuc">Tạo mới</a>
+        </div>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        Tên phương tiện
+                    </th>
+                    <th>
+                        Biển số
+                    </th>
+                    <th>
+                        Nhãn hiệu
+                    </th>
+                    <th>
+                        Số chỗ ngồi
+                    </th>
+                    <th>
+                        Số khung
+                    </th>
+                    <th>
+                        Số máy
+                    </th>
+                    <th>
+                        Loại Đăng Ký
+                    </th>
+                    <th>
+                        Ngày Đăng Ký
+                    </th>
+                    <th>
+                        Trạng Thái
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenPT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BienSo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanHieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoChoNgoi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoKhung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoMay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiDangKy)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.XetDuyet)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDangKy)
+
+                    </td>
+                </tr>
+}
+            </tbody>
+        </table>
+    </div>
+
+</div>

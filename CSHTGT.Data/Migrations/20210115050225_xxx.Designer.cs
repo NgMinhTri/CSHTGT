@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSHTGT.Data.Migrations
 {
     [DbContext(typeof(CSHTGTDbContext))]
-    [Migration("20210113092835_fix-db-1")]
-    partial class fixdb1
+    [Migration("20210115050225_xxx")]
+    partial class xxx
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -204,21 +204,6 @@ namespace CSHTGT.Data.Migrations
                     b.ToTable("HinhThucXuPhat");
                 });
 
-            modelBuilder.Entity("CSHTGT.Data.Models.LoaiDangKy", b =>
-                {
-                    b.Property<int>("MaDangKy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("KieuDangKy")
-                        .HasColumnType("int");
-
-                    b.HasKey("MaDangKy");
-
-                    b.ToTable("LoaiDangKy");
-                });
-
             modelBuilder.Entity("CSHTGT.Data.Models.LoaiPhuongTien", b =>
                 {
                     b.Property<int>("ID")
@@ -335,36 +320,42 @@ namespace CSHTGT.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("CMNDNgTGGiaoThongLienQuan")
+                    b.Property<string>("BienSo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaDangKy")
-                        .HasColumnType("int");
+                    b.Property<string>("CMNDNgLienQuan")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaDonVi")
-                        .HasColumnType("int");
+                    b.Property<string>("LoaiDangKy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaNgTGGiaoThong")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MaPhuongTien")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("NgayDangKy")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("NhanHieu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SoChoNgoi")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SoKhung")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoMay")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenPT")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("XetDuyet")
                         .HasColumnType("int");
 
                     b.HasKey("MaPhieu");
 
-                    b.HasIndex("MaDangKy");
-
-                    b.HasIndex("MaDonVi");
-
                     b.HasIndex("MaNgTGGiaoThong");
-
-                    b.HasIndex("MaPhuongTien");
 
                     b.ToTable("PhieuDangKyThuTuc");
                 });
@@ -490,35 +481,13 @@ namespace CSHTGT.Data.Migrations
 
             modelBuilder.Entity("CSHTGT.Data.Models.PhieuDangKyThuTuc", b =>
                 {
-                    b.HasOne("CSHTGT.Data.Models.LoaiDangKy", "LoaiDangKy")
-                        .WithMany("PhieuDangKyThuTucs")
-                        .HasForeignKey("MaDangKy")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CSHTGT.Data.Models.DonVi", "DonVi")
-                        .WithMany("PhieuDangKyThuTucs")
-                        .HasForeignKey("MaDonVi")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CSHTGT.Data.Models.NguoiThamGiaGiaoThong", "NguoiThamGiaGiaoThong")
                         .WithMany("PhieuDangKyThuTucs")
                         .HasForeignKey("MaNgTGGiaoThong")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CSHTGT.Data.Models.PhuongTien", "PhuongTien")
-                        .WithMany("PhieuDangKyThuTucs")
-                        .HasForeignKey("MaPhuongTien");
-
-                    b.Navigation("DonVi");
-
-                    b.Navigation("LoaiDangKy");
-
                     b.Navigation("NguoiThamGiaGiaoThong");
-
-                    b.Navigation("PhuongTien");
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.PhuongTien", b =>
@@ -550,18 +519,11 @@ namespace CSHTGT.Data.Migrations
                     b.Navigation("CanBos");
 
                     b.Navigation("GPLXes");
-
-                    b.Navigation("PhieuDangKyThuTucs");
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.HinhThucXuPhat", b =>
                 {
                     b.Navigation("BienBanViPhams");
-                });
-
-            modelBuilder.Entity("CSHTGT.Data.Models.LoaiDangKy", b =>
-                {
-                    b.Navigation("PhieuDangKyThuTucs");
                 });
 
             modelBuilder.Entity("CSHTGT.Data.Models.LoaiPhuongTien", b =>
@@ -578,11 +540,6 @@ namespace CSHTGT.Data.Migrations
                     b.Navigation("PhieuDangKyThuTucs");
 
                     b.Navigation("PhuongTiens");
-                });
-
-            modelBuilder.Entity("CSHTGT.Data.Models.PhuongTien", b =>
-                {
-                    b.Navigation("PhieuDangKyThuTucs");
                 });
 #pragma warning restore 612, 618
         }

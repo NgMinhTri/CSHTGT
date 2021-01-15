@@ -46,7 +46,6 @@ namespace CSHTGT.Data.Models
         [ForeignKey("MaNgTGGiaoThong")]
         public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; }
 
-        public List<PhieuDangKyThuTuc> PhieuDangKyThuTucs { get; set; }
 
     }
 }

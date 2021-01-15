@@ -1,16 +1,11 @@
-﻿using CSHTGT.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace CSHTGT.Data.Models
+namespace CSHTGT.ViewModels
 {
-    [Table("PhieuDangKyThuTuc")]
-    public class PhieuDangKyThuTuc
+    public class PhieuDangKyThuTucViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaPhieu { get; set; }
 
         public int MaNgTGGiaoThong { get; set; }
@@ -34,9 +29,5 @@ namespace CSHTGT.Data.Models
         public string SoKhung { get; set; }
 
         public string SoMay { get; set; }
-
-
-        [ForeignKey("MaNgTGGiaoThong")]
-        public virtual NguoiThamGiaGiaoThong NguoiThamGiaGiaoThong { get; set; }
     }
 }

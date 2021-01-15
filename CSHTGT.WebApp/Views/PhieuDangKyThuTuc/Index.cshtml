@@ -1,0 +1,110 @@
+﻿@model IEnumerable<CSHTGT.ViewModels.PhieuDangKyThuTucViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1><a asp-action="Index">Danh sách phiếu đăng ký</a></h1>
+<form asp-action="IndexSearch">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label class="control-label">Search by CMND,Hoten </label>
+        <input type="text" id="id" name="id" value="" class="form-control" />
+        @*<span asp-validation-for="cmnd" class="text-danger"></span>*@
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaPhieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaNgTGGiaoThong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CMNDNgLienQuan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDangKy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenPT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BienSo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NhanHieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoChoNgoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoKhung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoMay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiDangKy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.XetDuyet)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaPhieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNgTGGiaoThong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMNDNgLienQuan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDangKy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenPT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BienSo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhanHieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoChoNgoi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoKhung)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoMay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiDangKy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XetDuyet)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaPhieu">Edit</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

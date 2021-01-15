@@ -14,7 +14,6 @@ namespace CSHTGT.Data.Context
         public DbSet<CanBo> CanBos { get; set; }
         //public DbSet<DoanhNghiepVanTai> DoanhNghiepVanTais { get; set; }
         public DbSet<DonVi> DonVis { get; set; }
-        public DbSet<LoaiDangKy> LoaiDangKies { get; set; }
         public DbSet<GPLX> GPLXes { get; set; }
         public DbSet<HinhThucXuPhat> HinhThucXuPhats { get; set; }
         //public DbSet<HoSoDangKyPhuongTien> HoSoDangKyPhuongTiens { get; set; }
