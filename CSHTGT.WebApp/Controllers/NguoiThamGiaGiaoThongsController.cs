@@ -21,6 +21,10 @@ namespace CSHTGT.WebApp.Controllers
             _context = context;
         }
 
+        public NguoiThamGiaGiaoThongsController()
+        {
+        }
+
         // GET: NguoiThamGiaGiaoThongs
         public async Task<IActionResult> Index()
         {

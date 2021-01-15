@@ -17,6 +17,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CSHTGT.Service\CSHTGT.Service.csproj" />
+    <ProjectReference Include="..\CSHTGT.WebAPI\CSHTGT.WebAPI.csproj" />
+    <ProjectReference Include="..\CSHTGT.WebApp\CSHTGT.WebApp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

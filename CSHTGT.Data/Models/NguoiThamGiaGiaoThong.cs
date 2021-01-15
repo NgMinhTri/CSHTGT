@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,6 +28,7 @@ namespace CSHTGT.Data.Models
         //[Required]
         [MaxLength(50)]
         public string Email { get; set; }
+        [Column(TypeName = "Date")]
         public DateTime NgaySinh { get; set; }
 
         [MaxLength(250)]
