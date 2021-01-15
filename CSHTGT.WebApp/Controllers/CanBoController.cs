@@ -1,5 +1,6 @@
 ﻿using CSHTGT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,18 @@ namespace CSHTGT.WebApp.Controllers
             }
             return View(listCanBo);
         }
-        public IActionResult AddCanBo()
+        public async Task<IActionResult> AddCanBo()
         {
+            List<DonViViewModels> listDonVi = new List<DonViViewModels>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/DonVi"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listDonVi = JsonConvert.DeserializeObject<List<DonViViewModels>>(apiResponse);
+                }
+            }
+            ViewData["MaDonVi"] = new SelectList(listDonVi, "MaDonVi", "TenDonVi");
             return View();
         }
         [HttpPost]
