@@ -17,7 +17,7 @@ namespace CSHTGT.Data.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var connectionString = "Server=LAPTOP-CURK33BG\\MSBI;Database=CSHTGT;Trusted_Connection=True;";//configuration.GetConnectionString("CSHTGTDb");
+            var connectionString = "Server=.;Database=CSHTGT;Trusted_Connection=True;";//configuration.GetConnectionString("CSHTGTDb");
 
 
             var optionsBuilder = new DbContextOptionsBuilder<CSHTGTDbContext>();

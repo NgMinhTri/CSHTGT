@@ -1,0 +1,77 @@
+﻿@model CSHTGT.Data.Models.BienBanViPham
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 style="justify-content: center; justify-items: center; display: grid; margin: 20px;">Chỉnh sửa biên bản vi phạm</h2>
+<hr />
+<div class="row mx-auto" style="justify-content: center; justify-items: center;">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaBienBan" />
+            <div class="form-group">
+                <label asp-for="MaNgTGGiaoThong" class="control-label"></label>
+                <select asp-for="MaNgTGGiaoThong" class="form-control" asp-items="ViewBag.MaNgTGGiaoThong"></select>
+                <span asp-validation-for="MaNgTGGiaoThong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaHinhThucXuPhat" class="control-label"></label>
+                <select asp-for="MaHinhThucXuPhat" class="form-control" asp-items="ViewBag.MaHinhThucXuPhat"></select>
+                <span asp-validation-for="MaHinhThucXuPhat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaCanBo" class="control-label"></label>
+                <select asp-for="MaCanBo" class="form-control" asp-items="ViewBag.MaCanBo"></select>
+                <span asp-validation-for="MaCanBo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayViPham" class="control-label"></label>
+                <input asp-for="NgayViPham" class="form-control" />
+                <span asp-validation-for="NgayViPham" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayLap" class="control-label"></label>
+                <input asp-for="NgayLap" class="form-control" />
+                <span asp-validation-for="NgayLap" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HanNopPhat" class="control-label"></label>
+                <input asp-for="HanNopPhat" class="form-control" />
+                <span asp-validation-for="HanNopPhat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoiViPham" class="control-label"></label>
+                <input asp-for="LoiViPham" class="form-control" />
+                <span asp-validation-for="LoiViPham" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoQuyetDinh" class="control-label"></label>
+                <input asp-for="SoQuyetDinh" class="form-control" />
+                <span asp-validation-for="SoQuyetDinh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoTienPhat" class="control-label"></label>
+                <input asp-for="SoTienPhat" class="form-control" />
+                <span asp-validation-for="SoTienPhat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TinhTrangNopPhat" class="control-label"></label>
+                <input asp-for="TinhTrangNopPhat" class="form-control" />
+                <span asp-validation-for="TinhTrangNopPhat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" style="margin: 0 auto; display: block"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style=" display: flex; justify-content: center;">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

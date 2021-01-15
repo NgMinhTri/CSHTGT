@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CSHTGT.Data.Models.File>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="justify-content: center; justify-items: center; display: grid; margin: 20px;">Quản lý thủ tục, biểu mẫu</h2>
+<div style=" display: flex; justify-content: flex-end;">
+    <a asp-action="Create" style="margin-right: 30px; margin-bottom: 10px">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuDangKyThuTuc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhieuDangKyThuTuc.MaPhieu)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

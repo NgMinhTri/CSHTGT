@@ -1,0 +1,36 @@
+﻿@model CSHTGT.Data.Models.File
+
+@{ ViewData["Title"] = "Details"; }
+
+<h2 style="justify-content: center; justify-items: center; display: grid; margin: 20px;">Chi tiết thủ tục biểu mẫu</h2>
+<hr />
+<div>
+    <dl class="row mx-auto" style="justify-content: center; justify-items: center;">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenFile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TenFile)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkFile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkFile)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhieuDangKyThuTuc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhieuDangKyThuTuc.MaPhieu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <img src="@Url.Content(Model.LinkFile)" style="display: block; margin: 0 auto;"/>
+    <a href="@Url.Content(Model.LinkFile)" style="margin: 20px auto; display: flex; justify-content: center;">Tai ve</a>
+</div>
+<div style="display: flex; justify-content: center;">
+    <a asp-action="Edit" asp-route-id="@Model.ID" style="margin: 0 10px">Edit   </a> |
+    <a asp-action="Index" style="margin: 0 10px">   Back to List</a>
+</div>

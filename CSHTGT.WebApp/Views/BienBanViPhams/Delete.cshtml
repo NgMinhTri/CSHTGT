@@ -1,0 +1,86 @@
+﻿@model CSHTGT.Data.Models.BienBanViPham
+
+@{ ViewData["Title"] = "Delete"; }
+
+<h2 style="justify-content: center; justify-items: center; display: grid; margin: 20px;">Xóa biên bản vi phạm</h2>
+<hr />
+<div>
+    <dl class="row  mx-auto" style="justify-content: center; justify-items: center;">
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NgayViPham)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NgayViPham)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NgayLap)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HanNopPhat)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HanNopPhat)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LoiViPham)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.LoiViPham)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoQuyetDinh)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.SoQuyetDinh)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoTienPhat)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.SoTienPhat)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TinhTrangNopPhat)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TinhTrangNopPhat)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NguoiThamGiaGiaoThong)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.NguoiThamGiaGiaoThong.ID)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HinhThucXuPhat)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.HinhThucXuPhat.MaHinhThuc)
+        </dd>
+        <dt class="col-sm-4"></dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CanBo)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CanBo.IDCanBo)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" style="display: flex; justify-content: center;">
+        <input type="hidden" asp-for="MaBienBan" />
+        <input type="submit" value="Delete" class="btn btn-danger" style="margin: 0 10px"/> |
+        <a asp-action="Index" style="margin: 0 10px">Back to List</a>
+    </form>
+</div>

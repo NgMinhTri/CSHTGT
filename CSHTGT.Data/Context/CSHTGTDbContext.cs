@@ -22,6 +22,7 @@ namespace CSHTGT.Data.Context
         public DbSet<LoaiPhuongTien> LoaiPhuongTiens { get; set; }
         public DbSet<NguoiThamGiaGiaoThong> NguoiThamGiaGiaoThongs { get; set; }
         public DbSet<PhuongTien> PhuongTiens { get; set; }
+        public DbSet<File> Files { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
@@ -39,11 +40,7 @@ namespace CSHTGT.Data.Context
         //{
         //    modelBuilder.Seed();
         //}
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                @"Server=LAPTOP-CURK33BG\MSBI;Database=CSHTGT;Trusted_Connection=True;");
-        }
+       
 
     }
 }

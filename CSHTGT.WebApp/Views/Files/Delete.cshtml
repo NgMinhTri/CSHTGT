@@ -1,0 +1,36 @@
+﻿@model CSHTGT.Data.Models.File
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2 style="justify-content: center; justify-items: center; display: grid; margin: 20px;">Xóa bỏ thủ tục, biểu mẫu</h2>
+<hr />
+<div>
+    <dl class="row mx-auto">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenFile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenFile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkFile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LinkFile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhieuDangKyThuTuc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhieuDangKyThuTuc.MaPhieu)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete" style=" display: flex; justify-content: center;">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" style="margin: 0 10px" /> |
+        <a asp-action="Index" style="margin: 0 10px">Back to List</a>
+    </form>
+</div>
