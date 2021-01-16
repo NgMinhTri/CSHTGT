@@ -65,6 +65,18 @@ namespace CSHTGT.Service.Service
         {
             var query = _context.NguoiThamGiaGiaoThongs
                                 .Where(b => b.CMND == model.CMND).FirstOrDefaultAsync().Result;
+            var query1 = _context.LoaiPhuongTiens
+                .Where(l => l.ID == model.MaLoaiPhuongTien).FirstOrDefaultAsync().Result;
+            var query2 = _context.PhuongTiens
+               .Where(l => l.BienSo != model.BienSo).FirstOrDefaultAsync().Result;
+            if (query2 != null)
+            {
+                throw new Exception($"Biển số đã tồn tại");
+            }
+            if (query1 == null)
+            {
+                throw new Exception($"MÃ loại phương tiện ko tồn tại");
+            }
             if (query == null)
             {
                 throw new Exception($"Chứng minh nhân dân không tồn tại");
@@ -102,9 +114,12 @@ namespace CSHTGT.Service.Service
         public async Task<int> Edit(PhuongTienUpdateViewModel model)
         {
             var phuongtien = await _context.PhuongTiens.FindAsync(model.MaPT);
-            var loaiphuongtien = await _context.LoaiPhuongTiens.FirstOrDefaultAsync(x => x.ID == model.MaLoaiPhuongTien);           
+            var loaiphuongtien = await _context.LoaiPhuongTiens.FirstOrDefaultAsync(x => x.ID == model.MaLoaiPhuongTien);
+            //var query = _context.NguoiThamGiaGiaoThongs
+            //                    .Where(b => b.CMND == model.CMND).FirstOrDefaultAsync().Result;
             if (phuongtien == null || loaiphuongtien == null) throw new Exception($"Lỗi không tồn tại phương tiện");
             phuongtien.TenPT = model.TenPT;
+            //phuongtien.MaNgTGGiaoThong = query.ID ;
             phuongtien.BienSo = model.BienSo;
             phuongtien.NhanHieu = model.NhanHieu;
             phuongtien.SoChoNgoi = model.SoChoNgoi;

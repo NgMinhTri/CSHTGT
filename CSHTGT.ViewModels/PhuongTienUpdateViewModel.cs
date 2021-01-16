@@ -6,6 +6,7 @@ namespace CSHTGT.ViewModels
 {
     public class PhuongTienUpdateViewModel
     {
+       // public string CMND { get; set; }
         public int MaPT { get; set; }              
         public string TenPT { get; set; }
         public string BienSo { get; set; }

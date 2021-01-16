@@ -116,6 +116,7 @@ namespace CSHTGT.WebApp.Controllers
             using (var httpClient = new HttpClient())
             {
                 var content = new MultipartFormDataContent();
+                //content.Add(new StringContent(phuongtien.CMND), "CMND");
                 content.Add(new StringContent(phuongtien.TenPT), "TenPT");
                 content.Add(new StringContent(phuongtien.BienSo), "BienSo");
                 content.Add(new StringContent(phuongtien.SoChoNgoi.ToString()), "SoChoNgoi");

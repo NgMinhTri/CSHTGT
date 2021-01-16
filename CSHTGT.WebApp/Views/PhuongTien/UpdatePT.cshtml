@@ -19,6 +19,11 @@
         <form asp-action="UpdatePT">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            @*<div class="form-group">
+                <label asp-for="CMND" class="control-label">NHẬP CMND</label>
+                <input asp-for="CMND" class="form-control" />
+                <span asp-validation-for="CMND" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="TenPT" class="control-label">Nhập tên phương tiện</label>
                 <input asp-for="TenPT" class="form-control" />
@@ -60,16 +65,15 @@
                 <span asp-validation-for="TrangThai" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <label asp-for="MaLoaiPhuongTien" class="control-label">Loại phương tiện</label>
-            <select name="MaLoaiPhuongTien" asp-items="@ViewBag.MaLoaiPhuongTien" class="form-control">
-
-            </select>
-        </div>
+                <label asp-for="MaLoaiPhuongTien" class="control-label">Loại phương tiện</label>
+                <select name="MaLoaiPhuongTien" asp-items="@ViewBag.MaLoaiPhuongTien" class="form-control">
+                </select>
+            </div>
             @*<div class="form-group">
-                <label asp-for="MaLoaiPhuongTien" class="control-label"></label>
-                <input asp-for="MaLoaiPhuongTien" class="form-control" />
-                <span asp-validation-for="MaLoaiPhuongTien" class="text-danger"></span>
-            </div>*@
+            <label asp-for="MaLoaiPhuongTien" class="control-label"></label>
+            <input asp-for="MaLoaiPhuongTien" class="form-control" />
+            <span asp-validation-for="MaLoaiPhuongTien" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <input type="submit" value="Cập nhật" class="btn btn-primary" />
             </div>

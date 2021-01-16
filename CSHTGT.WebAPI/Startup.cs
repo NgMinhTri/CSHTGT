@@ -1,6 +1,8 @@
 ﻿using CSHTGT.Data.Context;
 using CSHTGT.Service.IService;
 using CSHTGT.Service.Service;
+using CSHTGT.ViewModels;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +40,8 @@ namespace CSHTGT.WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test c�c API", Version = "v1" });
             });
+            services.AddControllers()
+               .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<PhuongTienCreateValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
