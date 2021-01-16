@@ -58,9 +58,10 @@ namespace CSHTGT.WebApp.Controllers
 
         public ActionResult DeleteCB(int id)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:5001/api/");
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            HttpClient client = new HttpClient(clientHandler);
+            client.BaseAddress = new Uri("https://localhost:5001/api/");
                 var deleteTask = client.DeleteAsync("CanBo/" + id);
                 deleteTask.Wait();
                 var result = deleteTask.Result;
@@ -69,7 +70,7 @@ namespace CSHTGT.WebApp.Controllers
                     TempData["result"] = "Đã xóa Cán bộ khỏi hệ thống";
                     return RedirectToAction("Index");
                 }
-            }
+            
             return RedirectToAction("Index");
         }
     }

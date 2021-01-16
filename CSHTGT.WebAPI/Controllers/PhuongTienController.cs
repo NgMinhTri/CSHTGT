@@ -44,7 +44,7 @@ namespace CSHTGT.WebAPI.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{MaPT}")]
         public async Task<IActionResult> Delete(int MaPT)
         {
             var result = await _phuongTienService.Delete(MaPT);

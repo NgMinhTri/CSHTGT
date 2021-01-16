@@ -61,15 +61,19 @@ namespace CSHTGT.WebApp.Controllers
                 TempData["result"] = "Đăng kí phương tiện thành công";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", " đăng kí thất bại");
+            ModelState.AddModelError("", " CMND không tồn tại hoặc biển số trùng");
             return View(ViewModel);
         }
 
 
         public ActionResult DeletePT(int id)
         {
-            using (var client = new HttpClient())
-            {
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            // Pass the handler to httpclient(from you are calling api)
+            HttpClient client = new HttpClient(clientHandler);
+            
                 client.BaseAddress = new Uri("https://localhost:5001/api/");
                 var deleteTask = client.DeleteAsync("PhuongTien/" + id);
                 deleteTask.Wait();
@@ -81,7 +85,7 @@ namespace CSHTGT.WebApp.Controllers
                     return RedirectToAction("Index");
 
                 }
-            }
+            
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> UpdatePT(int id)
@@ -125,7 +129,7 @@ namespace CSHTGT.WebApp.Controllers
                 using (var response = await httpClient.PutAsync("https://localhost:5001/api/PhuongTien", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    ViewBag.Result = "Success";
+                    
                     receivedPhuongTien = JsonConvert.DeserializeObject<PhuongTienUpdateViewModel>(apiResponse);
                 }
             }

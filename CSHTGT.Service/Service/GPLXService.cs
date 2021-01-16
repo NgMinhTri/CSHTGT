@@ -23,6 +23,8 @@ namespace CSHTGT.Service.Service
         {
             var query = _context.NguoiThamGiaGiaoThongs
                                 .Where(b => b.CMND == model.CMND).FirstOrDefaultAsync().Result;
+            if (query == null)
+                throw new Exception($"Không tồn tại người tham gia giao thông");
             var gplx = new GPLX()
             {
                 MaNgTGGiaoThong = query.ID,

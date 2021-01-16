@@ -23,6 +23,7 @@ namespace CSHTGT.Service.Service
             var query = from p in _context.LoaiPhuongTiens select new { p };
             var data = await query.Select(x => new LoaiPhuongTienViewModel()
             {
+                ID = x.p.ID,
                 MoTa = x.p.MoTa,
                 TenLoai = x.p.TenLoai
             }).ToListAsync();

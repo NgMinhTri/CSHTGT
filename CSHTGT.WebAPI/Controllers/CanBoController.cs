@@ -33,7 +33,7 @@ namespace CSHTGT.WebAPI.Controllers
             var result = await _canboService.Create(model);
             return Ok(result);
         }
-        [HttpDelete]
+        [HttpDelete("{canboid}")]
         public async Task<IActionResult> Delete(int canboid)
         {
             var result = await _canboService.Delete(canboid);
