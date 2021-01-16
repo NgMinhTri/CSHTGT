@@ -34,7 +34,6 @@ namespace CSHTGT.Service.Service
                 SDT = x.c.SDT        
             }).ToListAsync();
         }
-        //đăng kí xe
         public async Task<int> Create(CanBoViewModel model)
         {
             var canbo = new CanBo()
@@ -52,8 +51,7 @@ namespace CSHTGT.Service.Service
             _context.CanBos.Add(canbo);
             await _context.SaveChangesAsync();
             return canbo.IDCanBo;
-        }
-        //thu hồi đăng kí xe
+        }    
         public async Task<int> Delete(int canboid)
         {
             var canbo = await _context.CanBos.FindAsync(canboid);
@@ -63,6 +61,43 @@ namespace CSHTGT.Service.Service
             }
             _context.CanBos.Remove(canbo);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> Edit(CanBoViewModel model)
+        {
+            var canbo = await _context.CanBos.FindAsync(model.IDCanBo);
+            var donvi = await _context.DonVis.FirstOrDefaultAsync(x => x.MaDonVi == model.MaDonVi);
+            if (canbo == null || donvi == null) throw new Exception($"Lỗi không tồn tại cán bộ");
+            canbo.HoTen = model.HoTen;
+            canbo.CMND = model.CMND;
+            canbo.DiaChi = model.DiaChi;
+            canbo.Email = model.Email;
+            canbo.NgaySinh = model.NgaySinh;
+            canbo.SDT = model.SDT;
+            canbo.UserName = model.UserName;
+            canbo.Password = model.Password;
+            canbo.MaDonVi = model.MaDonVi;
+            return await _context.SaveChangesAsync();
+        }
+        public async Task<CanBoViewModel> getById(int id)
+        {
+            var query = from c in _context.CanBos
+                        join d in _context.DonVis on c.MaDonVi equals d.MaDonVi
+                        where c.IDCanBo == id
+                        select new { c, d };
+            return await query.Select(x => new CanBoViewModel()
+            {
+                IDCanBo = x.c.IDCanBo,
+                HoTen = x.c.HoTen,
+                CMND = x.c.CMND,
+                DiaChi = x.c.DiaChi,
+                Email = x.c.Email,
+                NgaySinh = x.c.NgaySinh,
+                SDT = x.c.SDT,
+                UserName = x.c.UserName,
+                Password = x.c.Password,
+                MaDonVi = x.d.MaDonVi
+            }).FirstOrDefaultAsync();
         }
     }
 }

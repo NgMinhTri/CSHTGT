@@ -1,5 +1,6 @@
 ﻿using CSHTGT.Service.IService;
 using CSHTGT.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -41,6 +42,21 @@ namespace CSHTGT.WebAPI.Controllers
                 return BadRequest();
             return Ok();
         }
-
+        
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromBody]CanBoViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _canboService.Edit(model);
+            return Ok(result);
+        }
+       
+        [HttpGet("{id}")]
+        public async Task<IActionResult> getCanBoById(int id)
+        {
+            var category = await _canboService.getById(id);
+            return Ok(category);
+        }
     }
 }
