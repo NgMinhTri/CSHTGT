@@ -10,8 +10,9 @@ namespace CSHTGT.Service.IService
     {
         Task<List<CanBoViewModel>> GetAll();
         Task<int> Create(CanBoViewModel model);
-        //Task<int> Edit(CanBoViewModel model);
+        Task<int> Edit(CanBoViewModel model);
         Task<int> Delete(int canboid);
+        Task<CanBoViewModel> getById(int id);
 
     }
 }
