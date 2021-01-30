@@ -21,14 +21,10 @@ namespace CSHTGT.WebApp.Controllers
             _context = context;
         }
 
-        public NguoiThamGiaGiaoThongsController()
-        {
-        }
-
         // GET: NguoiThamGiaGiaoThongs
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.NguoiThamGiaGiaoThongs.ToListAsync());
+        public async Task<IActionResult> Index(int? page)
+        { 
+           return View(await _context.NguoiThamGiaGiaoThongs.ToListAsync());
         }
         //public async Task<IActionResult> IndexSearch(string cmnd)
         //{

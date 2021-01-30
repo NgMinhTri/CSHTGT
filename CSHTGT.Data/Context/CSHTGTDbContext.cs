@@ -1,4 +1,5 @@
-﻿using CSHTGT.Data.Models;
+﻿using CSHTGT.Data.Extension;
+using CSHTGT.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSHTGT.Data.Context
@@ -23,10 +24,10 @@ namespace CSHTGT.Data.Context
         public DbSet<NguoiThamGiaGiaoThong> NguoiThamGiaGiaoThongs { get; set; }
         public DbSet<PhieuDangKyThuTuc> PhieuDangKyThuTucs { get; set; }
         public DbSet<PhuongTien> PhuongTiens { get; set; }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Seed();
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(

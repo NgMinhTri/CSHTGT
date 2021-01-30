@@ -50,7 +50,7 @@ namespace CSHTGT.WebAPI.Controllers
                 return nguoiThamGiaGiaoThong;
             }
         }
-        // GET: api/NguoiThamGiaGiaoThongs/find/id
+        // GET: api/NguoiThamGiaGiaoThongs/id
         [HttpGet("{id}")]
         public async Task<ActionResult<NguoiThamGiaGiaoThong>> GetNguoiThamGiaGiaoThong(int id)
         {
